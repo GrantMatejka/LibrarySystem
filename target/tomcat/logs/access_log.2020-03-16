@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [16/Mar/2020:12:57:56 -0700] "GET /LibrarySystem/users HTTP/1.1" 200 2909 http-bio-8080-exec-1 1463
+0:0:0:0:0:0:0:1 - - [16/Mar/2020:12:57:56 -0700] "GET /LibrarySystem/js/bootstrap.min.js HTTP/1.1" 200 60010 http-bio-8080-exec-2 2
+0:0:0:0:0:0:0:1 - - [16/Mar/2020:12:57:56 -0700] "GET /LibrarySystem/css/bootstrap.min.css HTTP/1.1" 200 159515 http-bio-8080-exec-3 3
+0:0:0:0:0:0:0:1 - - [16/Mar/2020:12:57:57 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 87 http-bio-8080-exec-5 30
