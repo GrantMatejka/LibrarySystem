@@ -14,20 +14,23 @@
 
     <div class="col">
         <div class="card">
+            <div class="card-header">
+                <h1>Welcome to our library management system</h1>
+
+            </div>
             <div class="card-body">
                 <center>
-                <h1>Welcome to our library management system</h1>
                 <br/>
 
-
-                <div align="center">
-                    <label for="inputUsername" class="sr-only">Username</label>
-                   <input type="password" class="form-control" id="inputUsername" placeholder="Username">
-                  <button type="submit" class="btn btn-primary mb-2">login</button>
-
+                 <div class="col-3">
+                 <form method="post" action="login">
+                     <p><label for="name">User Name</label><br/><input type="text" class="form-control" name="name" id="name" value="" placeholder="username" size="20"></p>
+                     <!--<p><label for="pass">Password</label><input type="password" class="form-control" name="pass" id="pass" value="" placeholder="password" size="20"></p>-->
+                     <p><input class="btn btn-primary" type="submit"></p>
+                 </form>
                 </div>
 
-                <p><a href="./users">users</a></p>
+                <p><a href="./users">hard link to users</a></p>
                 </center>
             </div>
         </div>

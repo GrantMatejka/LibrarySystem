@@ -118,4 +118,9 @@ public class DaoManager {
         return new UserDaoImpl(this.getConnection());
     }
 
+    public UserDao getUserDao2() throws SQLException {
+        return new UserDaoImpl(this.getConnection());
+    }
+
+
 }

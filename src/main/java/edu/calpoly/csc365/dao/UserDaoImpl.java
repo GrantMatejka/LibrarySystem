@@ -17,12 +17,32 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public String GetPermission(String username) {
+        String perm = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM group09.Users WHERE username = ?");
+            preparedStatement.setString(1, username);
+
+            resultSet = preparedStatement.executeQuery();
+
+            Set<User> users = unpackResultSet(resultSet);
+            perm = users.iterator().next().getPermissionLevel();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return perm;
+    }
+
+    @Override
     public Boolean authenticate(String name) {
         Boolean authenticated = false;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT name FROM Users WHERE name = ?");
+            preparedStatement = this.conn.prepareStatement("SELECT name FROM Users WHERE username = ?");
             preparedStatement.setString(1, name);
             resultSet = preparedStatement.executeQuery();
             if (resultSet != null && resultSet.first()) authenticated = true;
@@ -91,6 +111,7 @@ public class UserDaoImpl implements UserDao {
                     rs.getString("name"),
                     rs.getString("permissionLevel"));
             users.add(user);
+            System.out.println(user);
         }
         return users;
     }
