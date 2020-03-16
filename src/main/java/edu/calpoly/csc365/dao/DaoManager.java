@@ -4,6 +4,8 @@ import edu.calpoly.csc365.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DaoManager {
@@ -69,6 +71,37 @@ public class DaoManager {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    public static User verifyUser(String username, String perLevel, Connection myConn) {
+        PreparedStatement s;
+        int id = -1;
+        try{
+            s = myConn.prepareStatement("SELECT * FROM Users WHERE username = ? AND permissionLevel = ?");
+            s.setString(1, username);
+            s.setString(2, perLevel);
+
+            ResultSet result = s.executeQuery();
+
+            User u = new User();
+
+            int i = 0;
+            while(result.next()) {
+                u = new User(result.getInt("id"),
+                        result.getString("username"),
+                        result.getString("name"),
+                        result.getString("permissionLevel"));
+                i++;
+            }
+
+            if(i == 1)
+                return u;
+            else
+                return new User();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return new User();
         }
     }
 
