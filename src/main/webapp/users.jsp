@@ -24,25 +24,33 @@
     </style>
 </head>
 <body>
-Message: ${message}
-<table>
-    <thead>Users</thead>
-    <tr>
-        <th>id</th>
-        <th>username</th>
-        <th>name</th>
-        <th>permissionLevel</th>
-    </tr>
-
-    <c:forEach items="${users}" var="user">
+<div class="card">
+    <div class="card-header">
+    Message: ${message}
+    </div>
+    <div class="card-body">
+    <table>
+        <thead>Users</thead>
         <tr>
-            <td>${user.id}</td>
-            <td>${user.username}</td>
-            <td>${user.name}</td>
-            <td>${user.permissionLevel}</td>
+            <th>id</th>
+            <th>username</th>
+            <th>name</th>
+            <th>permissionLevel</th>
         </tr>
-    </c:forEach>
-</table>
-<p><a href="./" class="btn btn-primary">home</a></p>
+
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.name}</td>
+                <td>${user.permissionLevel}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    </div>
+    <div class="card-footer">
+        <p><a href="./" class="btn btn-primary"><- back</a></p>
+    </div>
+</div>
 </body>
 </html>
