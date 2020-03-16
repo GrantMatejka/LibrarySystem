@@ -23,9 +23,11 @@
                 <br/>
 
                  <div class="col-3">
-                 <label for="inputUsername" class="sr-only ">Username</label>
-                 <input type="password" class="form-control mb-2" id="inputUsername" placeholder="Username">
-                 <button type="submit" class="btn btn-primary mb-3">login</button>
+                 <form method="post" action="login">
+                     <p><label for="name">User Name</label><br/><input type="text" class="form-control" name="name" id="name" value="" placeholder="username" size="20"></p>
+                     <!--<p><label for="pass">Password</label><input type="password" class="form-control" name="pass" id="pass" value="" placeholder="password" size="20"></p>-->
+                     <p><input class="btn btn-primary" type="submit"></p>
+                 </form>
                 </div>
 
                 <p><a href="./users">hard link to users</a></p>
