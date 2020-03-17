@@ -28,6 +28,9 @@ public class StudentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //HERE is where you would edit what info gets sent to the page, whatever "users" is is what gets displayed
+        //TO change this create a new method in the userDao
+        //A lot of our applications will be in Book implementation
         Set<User> users = userDao.getAll();
         request.setAttribute("users", users);
         request.setAttribute("message", "Hello student");
