@@ -20,6 +20,7 @@ import java.util.Set;
 public class ManagerServlet extends HttpServlet {
 
     private DaoManager dm;
+    //TODO change what dao type this is to alter the view
     private Dao<User> userDao;
 
     public ManagerServlet() throws Exception {
