@@ -20,10 +20,12 @@ import java.util.Set;
 public class LibrarianServlet extends HttpServlet {
 
     private DaoManager dm;
+    //TODO change what dao type this is to alter the view
     private Dao<User> userDao;
 
     public LibrarianServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
+        //TODO change what dao type this is to alter the view
         userDao = dm.getUserDao();
     }
 
@@ -33,6 +35,7 @@ public class LibrarianServlet extends HttpServlet {
         //A lot of our applications will be in Book implementation
         Set<User> users = userDao.getAll();
 
+        //TODO change this to send different data
         request.setAttribute("users", users);
         request.setAttribute("message", "Hello Librarian");
         request.getRequestDispatcher("librarian.jsp").forward(request, response);

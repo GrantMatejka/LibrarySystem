@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(loginCookie);
 
             String permission = authenticationService.GetPermission(name);
+
             if (permission.equals("MAN")) {
                 response.sendRedirect("manager");
 
