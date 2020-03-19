@@ -1,5 +1,6 @@
 package edu.calpoly.csc365.dao;
 
+import edu.calpoly.csc365.entity.Book;
 import edu.calpoly.csc365.entity.User;
 
 import javax.sql.DataSource;
@@ -117,9 +118,12 @@ public class DaoManager {
     public Dao<User> getUserDao() throws SQLException {
         return new UserDaoImpl(this.getConnection());
     }
-
     public UserDao getUserDao2() throws SQLException {
         return new UserDaoImpl(this.getConnection());
+    }
+
+    public Dao<Book> getBookDao() throws SQLException {
+        return new BookDaoImpl(this.getConnection());
     }
 
 

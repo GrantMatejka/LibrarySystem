@@ -23,24 +23,17 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Set<Book> getSearchedBooks(String title, String author, String category) {
+    public Set<Book> getSearchedBooks(String entry) {
         Set<Book> books = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            if(category != null) {
-                preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE '%%s%' " + "OR author LIKE '%%s%' OR category LIKE '%%s%'");
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE '%%?%' " + "OR author LIKE '%%?%' OR category LIKE '%%?%'");
 
-                preparedStatement.setString(1, title);
-                preparedStatement.setString(2, author);
-                preparedStatement.setString(3, category);
-            } else {
-                preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE '%%s%' " +
-                        "AND author LIKE '%%s%'");
-                preparedStatement.setString(1, title);
-                preparedStatement.setString(2, author);
+            preparedStatement.setString(1, entry);
+            preparedStatement.setString(2, entry);
+            preparedStatement.setString(3, entry);
 
-            }
             resultSet = preparedStatement.executeQuery();
             books = unpackResultSet(resultSet);
         } catch (SQLException e) {
