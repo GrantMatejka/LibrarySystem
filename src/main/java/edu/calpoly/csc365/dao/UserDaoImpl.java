@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT * FROM group09.Users WHERE username = ?");
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM Users WHERE username = ?");
             preparedStatement.setString(1, username);
 
             resultSet = preparedStatement.executeQuery();
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT * FROM group09.Users WHERE username = ?");
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM Users WHERE username = ?");
             preparedStatement.setString(1, username);
 
             resultSet = preparedStatement.executeQuery();
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT * FROM group09.Users WHERE username = ?");
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM Users WHERE username = ?");
             preparedStatement.setString(1, username);
 
             resultSet = preparedStatement.executeQuery();
