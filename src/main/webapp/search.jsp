@@ -40,24 +40,6 @@
                      <p><input class="btn btn-primary" type="submit"></p>
                  </form>
                 </div>
-                <table>
-                    <thead>Book Results</thead>
-                    <tr>
-                        <th>id</th>
-                        <th>username</th>
-                        <th>name</th>
-                        <th>permissionLevel</th>
-                    </tr>
-
-                    <c:forEach items="${books}" var="book">
-                        <tr>
-                            <td>${user.asin}</td>
-                            <td>${user.copyNum}</td>
-                            <td>${user.title}</td>
-                            <td>${user.category}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
                 <p><a href="./student">back</a></p>
                 </center>
             </div>
