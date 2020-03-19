@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:10:39 -0700] "GET /LibrarySystem HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:10:40 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1242 http-bio-8080-exec-2 775
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:10:46 -0700] "POST /LibrarySystem/login HTTP/1.1" 302 - http-bio-8080-exec-3 909
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:10:47 -0700] "GET /LibrarySystem/manager HTTP/1.1" 200 3973 http-bio-8080-exec-4 651
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:12:02 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1242 http-bio-8080-exec-6 3
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:12:04 -0700] "POST /LibrarySystem/login HTTP/1.1" 302 - http-bio-8080-exec-7 85
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:12:04 -0700] "GET /LibrarySystem/librarian HTTP/1.1" 200 3669 http-bio-8080-exec-8 402
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:20:12:57 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1242 http-bio-8080-exec-9 2
