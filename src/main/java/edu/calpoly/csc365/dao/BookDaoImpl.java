@@ -22,50 +22,14 @@ public class BookDaoImpl implements BookDao {
         return null;
     }
 
-    //Partial search for books
-    public Set<Book> partialSearch(String searcher) {
-        Set<Book> books = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            preparedStatement = this.conn.prepareStatement("SELECT *, (totalQuantity - checkedOut) as stockCnt FROM Books JOIN Inventory ON bookId = asin WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
-
-            preparedStatement.setString(1, "%"+entry+"%");
-            preparedStatement.setString(2, "%"+entry+"%");
-            preparedStatement.setString(3, "%"+entry+"%");
-
-            System.out.println(preparedStatement);
-
-            resultSet = preparedStatement.executeQuery();
-            books = unpackSearch(resultSet);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null)
-                    resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return books;
-    }
-
-    @Override
     public Set<Book> getSearchedBooks(String entry) {
-        Set<Book> books = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        Set<Book> books;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT *, (totalQuantity - checkedOut) as stockCnt FROM Books JOIN Inventory ON bookId = asin WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
-
-
+            preparedStatement = this.conn.prepareStatement("SELECT *, (totalQuantity - checkedOut) as stockCnt FROM " +
+                    "Books JOIN Inventory ON bookId = asin WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
+            
             preparedStatement.setString(1, "%"+entry+"%");
             preparedStatement.setString(2, "%"+entry+"%");
             preparedStatement.setString(3, "%"+entry+"%");
@@ -77,12 +41,14 @@ public class BookDaoImpl implements BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+
             try {
                 if (resultSet != null)
                     resultSet.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
