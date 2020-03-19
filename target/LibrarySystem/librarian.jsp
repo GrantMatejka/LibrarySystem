@@ -31,10 +31,10 @@
     <div class="card-body">
         <div class="col-3">
             <form method="post" action="librarian">
-                <p><label for="check_in_user">Check Out USER ID</label><br/><input type="text" class="form-control" name="check_in_user" id="check_in_user" value="" placeholder="user_id" size="20"></p>
+                <p><label for="check_out_user">Check Out USER ID</label><br/><input type="text" class="form-control" name="check_out_user" id="check_out_user" value="" placeholder="user_id" size="20"></p>
 
-                <p><label for="check_in_book">Check Out BOOK ID</label><br/><input type="text" class="form-control" name="check_in_book" id="check_in_book" value="" placeholder="book_id" size="20"></p>
-                <p><input class="btn btn-primary" type="submit" onclick = "sumbitform()"></p>
+                <p><label for="check_out_book">Check Out BOOK ID</label><br/><input type="text" class="form-control" name="check_out_book" id="check_out _book" value="" placeholder="book_id" size="20"></p>
+                <p><input class="btn btn-primary" type="submit" ></p>
             </form>
         </div>
 
