@@ -44,7 +44,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("librarian");
 
             } else if (permission.equals("UG") || permission.equals("GR")) {
-                response.sendRedirect("student");
+                response.sendRedirect("search");
+
 
             } else {
                 response.sendRedirect("users");

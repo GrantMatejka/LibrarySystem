@@ -36,6 +36,10 @@ public class SearchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+
+        request.setAttribute("message", cookies[1].getValue());
+
         String entry = request.getParameter("entry");
         request.setAttribute("entry", entry);
 
@@ -43,27 +47,5 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("books", books);
 
         request.getRequestDispatcher("search.jsp").forward(request, response);
-
-        /*if (entry != null) {
-            System.out.println("Received: " + entry);
-            if (books.size() > 0) {
-                PrintWriter out = response.getWriter();
-
-                out.println("<html><head><link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">" +
-                        "    <script src=\"js/bootstrap.min.js\"></script><title>Customers</title>" +
-                        "    <style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;" +
-                        "        }td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;" +
-                        "        }tr:nth-child(even) {background-color: #dddddd;" +
-                        "        }</style></head><body>");
-                out.println("<div class=\"col-2\"></div><div class=\"col\"><p><a href=\"./search.jsp\" class=\"btn btn-primary\"><- back</a></p><table><thead>Search Results</thead><tr> <th>title</th><th>author</th><th>category</th><th>stock</th></tr>");
-
-                for (Book book : books) {
-                    out.println("<tr><td>" + book.getTitle() + "</td><td>" + book.getAuthor() + "</td><td>" + book.getCategory() + "</td><td>" + book.getStockCnt() + "</td></tr>");
-                }
-                out.println("</table><p><a href=\"./search.jsp\" class=\"btn btn-primary\"><- back</a></p></div><div class=\"col-2\"></div>");
-                out.close();
-            }
-
-        }*/
     }
 }
