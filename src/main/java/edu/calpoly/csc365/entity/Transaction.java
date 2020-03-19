@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Transaction {
    private Integer id;
-   private Integer bookId;
+   private String bookId;
    private Integer copyNum;    // What copy is this book? (ex: transaction 5 for book 3 copy 2)
    private Integer userId;
    private Date checkOutDate;
