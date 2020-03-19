@@ -30,7 +30,7 @@
 </div>
 
 <div class="row">
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 
     <div class="col">
         <div class="card">
@@ -51,6 +51,8 @@
                         <th>author</th>
                         <th>category</th>
                         <th>stockCnt</th>
+                        <th>Checkout</th>
+                        <th>Reserve</th>
                     </tr>
                  <c:forEach items="${books}" var="book">
                     <tr>
@@ -58,12 +60,8 @@
                         <td>${book.author}</td>
                         <td>${book.category}</td>
                         <td>${book.stockCnt}</td>
-                        <c:if test="${book.stockCnt > 2}">
-                        <td><a href="./checkOut.jsp?bookId=${book.asin}&copyNum=${book.copyNum}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Check Out</a></td>
-                        </c:if>
-                        <c:if test="${book.stockCnt == 2}">
+                        <td><a href="./checkOut?bookId=${book.asin}&copyNum=${book.copyNum}&bookTitle=${book.title}&bookAuthor=${book.author}">Check Out</a></td>
                         <td><a href="./reserve.jsp?bookId=${book.asin}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Reserve</a></td>
-                        </c:if>
                     </tr>
                  </c:forEach>
                  </table>
@@ -73,7 +71,7 @@
         </div>
     </div>
 
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 </div>
 
 </body>

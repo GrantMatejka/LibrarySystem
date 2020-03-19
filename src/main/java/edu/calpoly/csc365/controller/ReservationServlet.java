@@ -19,18 +19,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.Set;
-import java.time.LocalDate;
 
 @WebServlet(name = "ReservationServlet", urlPatterns = "/reserve")
 public class ReservationServlet extends HttpServlet {
 
     private DaoManager dm;
 
-    private TransactionDaoImpl transactionDaoImpl = null;
+    private TransactionDao transactionDao = null;
 
     public ReservationServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
-        transactionDaoImpl = dm.getTransactionDao();
+        transactionDao = dm.getTransactionDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,7 +42,7 @@ public class ReservationServlet extends HttpServlet {
         String bookId = request.getParameter("bookId");
         String userId = request.getParameter("userId");
 
-        transactionDaoImpl.insertReservation(bookId, Integer.parseInt(userId));
+        transactionDao.insertReservation(bookId, Integer.parseInt(userId));
 
         request.getRequestDispatcher("reserve.jsp").forward(request, response);
     }
