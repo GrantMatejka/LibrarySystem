@@ -122,7 +122,7 @@ public class DaoManager {
         return new UserDaoImpl(this.getConnection());
     }
 
-    public Dao<Book> getBookDao() throws SQLException {
+    public BookDao getBookDao() throws SQLException {
         return new BookDaoImpl(this.getConnection());
     }
 
