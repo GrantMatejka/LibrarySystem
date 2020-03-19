@@ -49,6 +49,7 @@
     </table>
     </div>
     <div class="card-footer">
+        <p><a href="./search.jsp"  class="btn btn-primary">Search Page</a></p>
         <p><a href="./" class="btn btn-primary"><- back</a></p>
     </div>
 </div>

@@ -23,6 +23,42 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public Set<Book> getSearchedBooks(String entry) {
+        Set<Book> books = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT *, (totalQuantity - checkedOut) as stockCnt FROM Books JOIN Inventory ON bookId = asin WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
+
+
+            preparedStatement.setString(1, "%"+entry+"%");
+            preparedStatement.setString(2, "%"+entry+"%");
+            preparedStatement.setString(3, "%"+entry+"%");
+
+            System.out.println(preparedStatement);
+
+            resultSet = preparedStatement.executeQuery();
+            books = unpackSearch(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return books;
+    }
+
+    @Override
     public Set<Book> getAll() {
         Set<Book> books = null;
         PreparedStatement preparedStatement = null;
@@ -75,10 +111,28 @@ public class BookDaoImpl implements BookDao {
                 rs.getString("filename"),
                 rs.getString("imageUrl"),
                 rs.getString("title"),
+                rs.getString("author"),
                 rs.getInt("categoryId"),
                 rs.getString("category"));
             users.add(book);
-            System.out.println(book);
+        }
+        return users;
+    }
+    private Set<Book> unpackSearch(ResultSet rs) throws SQLException {
+        Set<Book> users = new HashSet<Book>();
+
+        while(rs.next()) {
+            Book book = new Book(
+                    rs.getString("asin"),
+                    rs.getInt("copyNum"),
+                    rs.getString("filename"),
+                    rs.getString("imageUrl"),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getInt("categoryId"),
+                    rs.getString("category"),
+                    rs.getInt("stockCnt"));
+            users.add(book);
         }
         return users;
     }

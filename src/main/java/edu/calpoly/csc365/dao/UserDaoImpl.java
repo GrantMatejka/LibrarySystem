@@ -111,7 +111,6 @@ public class UserDaoImpl implements UserDao {
                     rs.getString("name"),
                     rs.getString("permissionLevel"));
             users.add(user);
-            System.out.println(user);
         }
         return users;
     }
