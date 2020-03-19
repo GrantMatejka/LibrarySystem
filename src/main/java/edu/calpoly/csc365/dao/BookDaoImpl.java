@@ -30,6 +30,7 @@ public class BookDaoImpl implements BookDao {
         try {
             preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
 
+
             preparedStatement.setString(1, "%"+entry+"%");
             preparedStatement.setString(2, "%"+entry+"%");
             preparedStatement.setString(3, "%"+entry+"%");
@@ -110,6 +111,7 @@ public class BookDaoImpl implements BookDao {
                 rs.getString("filename"),
                 rs.getString("imageUrl"),
                 rs.getString("title"),
+                rs.getString("author"),
                 rs.getInt("categoryId"),
                 rs.getString("category"));
             users.add(book);

@@ -6,6 +6,7 @@ public class Book {
    private String filename;
    private String imageUrl;
    private String title;
+   private String author;
    private Integer categoryId; 
    private String category;
 
@@ -15,16 +16,18 @@ public class Book {
       this.filename = null;
       this.imageUrl = null;
       this.title = null;
+      this.author = null;
       this.categoryId = null;
       this.category = null;
    }
 
-   public Book(String asin, Integer copyNum, String filename, String imageUrl, String title, Integer categoryId, String category) {
+   public Book(String asin, Integer copyNum, String filename, String imageUrl, String title, String author, Integer categoryId, String category) {
       this.asin = asin;
       this.copyNum = copyNum;
       this.filename = filename;
       this.imageUrl = imageUrl;
       this.title = title;
+      this.author = author;
       this.categoryId = categoryId;
       this.category = category;
    }
@@ -69,6 +72,14 @@ public class Book {
       this.title = title;
    }
 
+   public String getAuthor() {
+      return this.author;
+   }
+
+   public void setAuthor(String author) {
+      this.author = author;
+   }
+
    public Integer getCategoryId() {
       return this.categoryId;
    }
@@ -110,6 +121,11 @@ public class Book {
       return this;
    }
 
+   public Book author(String author) {
+      this.author = author;
+      return this;
+   }
+
    public Book categoryId(Integer categoryId) {
       this.categoryId = categoryId;
       return this;
@@ -123,13 +139,14 @@ public class Book {
    @Override
    public String toString() {
       return "{" +
-         " asin='" + getAsin() + "'" +
-         ", copyNum='" + getCopyNum() + "'" +
-         ", filename='" + getFilename() + "'" +
-         ", imageUrl='" + getImageUrl() + "'" +
-         ", title='" + getTitle() + "'" +
-         ", categoryId='" + getCategoryId() + "'" +
-         ", category='" + getCategory() + "'" +
+         " asin='" + this.asin + "'" +
+         ", copyNum='" + this.copyNum + "'" +
+         ", filename='" + this.filename + "'" +
+         ", imageUrl='" + this.imageUrl + "'" +
+         ", title='" + this.title + "'" +
+         ", author='"+ this.author +"'" +
+         ", categoryId='" + this.categoryId + "'" +
+         ", category='" + this.category + "'" +
          "}";
    }
 
