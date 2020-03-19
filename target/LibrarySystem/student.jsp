@@ -25,25 +25,21 @@
 </head>
 <body>
 <div class="card">
-    <div class="card-header">
-    Message: ${message}
-    </div>
+
     <div class="card-body">
     <table>
-        <thead>Users</thead>
+        <thead>Currently Checked Out Books</thead>
         <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>name</th>
-            <th>permissionLevel</th>
+            <th>title</th>
+            <th>author</th>
+            <th>asin</th>
         </tr>
 
-        <c:forEach items="${users}" var="user">
+        <c:forEach items="${books}" var="book">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.name}</td>
-                <td>${user.permissionLevel}</td>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.asin}</td>
             </tr>
         </c:forEach>
     </table>
