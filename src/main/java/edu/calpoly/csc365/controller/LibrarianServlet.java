@@ -1,8 +1,6 @@
 package edu.calpoly.csc365.controller;
 
-import edu.calpoly.csc365.dao.DaoManagerFactory;
-import edu.calpoly.csc365.dao.Dao;
-import edu.calpoly.csc365.dao.DaoManager;
+import edu.calpoly.csc365.dao.*;
 import edu.calpoly.csc365.entity.CheckedOut;
 import edu.calpoly.csc365.entity.User;
 
@@ -22,13 +20,15 @@ public class LibrarianServlet extends HttpServlet {
 
     private DaoManager dm;
     //TODO change what dao type this is to alter the view
-    private Dao<User> userDao;
+    private UserDao userDao;
+    private BookDao bookDao;
 
 
     public LibrarianServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
         //TODO change what dao type this is to alter the view
-        userDao = dm.getUserDao();
+        userDao = dm.getUserDao2();
+        bookDao = dm.getBookDao2();
 
     }
 
@@ -36,23 +36,27 @@ public class LibrarianServlet extends HttpServlet {
         //HERE is where you would edit what info gets sent to the page, whatever "users" is is what gets displayed
         //TO change this create a new method in the userDao
         //A lot of our applications will be in Book implementation
-        Set<User> users = userDao.getAll();
         request.getRequestDispatcher("librarian.jsp").forward(request, response);
 
 
         //TODO change this to send different data
 
-        request.setAttribute("message", "Hello Librarian");
-
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String user = request.getParameter("check_in_user");
-        request.setAttribute("check_in_user",user);
-        System.out.println(user);
-        String book = request.getParameter("check_in_book");
-        request.setAttribute("check_in_book",book);
-        System.out.println(user + book);
+        String check_in_user = request.getParameter("check_in_user");
+        request.setAttribute("check_in_user", check_in_user);
+        String check_in_book = request.getParameter("check_in_book");
+        request.setAttribute("check_in_book",check_in_book);
+        System.out.println(check_in_user + ' ' + check_in_book);
+        if(!userDao.authenticate(check_in_user)){
+            System.out.println("not valid user");
+        }
+        else if(bookDao.getById(check_in_book) == null){
+            System.out.println("not valid book");
+        }
+        else{
 
+        }
         request.getRequestDispatcher("librarian.jsp").forward(request, response);
     }
 }

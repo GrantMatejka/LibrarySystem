@@ -1,5 +1,5 @@
-0:0:0:0:0:0:0:1 - - [18/Mar/2020:21:19:44 -0700] "GET /LibrarySystem HTTP/1.1" 302 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [18/Mar/2020:21:19:44 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1242 http-bio-8080-exec-2 637
-0:0:0:0:0:0:0:1 - - [18/Mar/2020:21:19:47 -0700] "POST /LibrarySystem/login HTTP/1.1" 302 - http-bio-8080-exec-3 882
-0:0:0:0:0:0:0:1 - - [18/Mar/2020:21:19:48 -0700] "GET /LibrarySystem/librarian HTTP/1.1" 200 1466 http-bio-8080-exec-4 428
-0:0:0:0:0:0:0:1 - - [18/Mar/2020:21:19:52 -0700] "POST /LibrarySystem/check_in_book HTTP/1.1" 404 1005 http-bio-8080-exec-5 1
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:22:09:51 -0700] "GET /LibrarySystem HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:22:09:52 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1242 http-bio-8080-exec-2 803
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:22:09:57 -0700] "POST /LibrarySystem/login HTTP/1.1" 302 - http-bio-8080-exec-4 816
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:22:09:57 -0700] "GET /LibrarySystem/librarian HTTP/1.1" 200 1427 http-bio-8080-exec-5 461
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:22:10:01 -0700] "POST /LibrarySystem/librarian HTTP/1.1" 200 1427 http-bio-8080-exec-6 75

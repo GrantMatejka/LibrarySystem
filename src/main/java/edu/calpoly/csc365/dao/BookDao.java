@@ -8,4 +8,5 @@ public interface BookDao extends Dao<Book> {
     //Method signatures for gathering data on books goes here
 
     public Set<Book> getSearchedBooks(String entry);
+    public Book getById(String id);
 }
