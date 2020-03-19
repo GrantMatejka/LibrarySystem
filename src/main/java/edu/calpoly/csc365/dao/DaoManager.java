@@ -126,5 +126,13 @@ public class DaoManager {
         return new BookDaoImpl(this.getConnection());
     }
 
-
+    public TransactionDao getTransactionDao() throws SQLException {
+        return new TransactionDaoImpl(this.getConnection());
+    }
+    public InventoryDao getInventoryDao() throws SQLException{
+        return new InventoryDaoImpl(this.getConnection());
+    }
+    public CheckedOutDao getCheckedOutDao() throws SQLException{
+        return new CheckedOutDaoImpl(this.getConnection());
+    }
 }

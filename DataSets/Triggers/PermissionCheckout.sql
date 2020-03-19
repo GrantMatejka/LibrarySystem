@@ -1,13 +1,16 @@
+use group09;
+drop trigger  checkout_period;
+
 DELIMITER $
-CREATE TRIGGER `checkout_period` AFTER INSERT ON `Transactions`
+CREATE TRIGGER `checkout_period` BEFORE INSERT ON `Transactions`
 FOR EACH ROW
 BEGIN
-	UPDATE Transactions SET expectedCheckInDate = checkOutDate + 
+	SET NEW.expectedCheckInDate = DATE_ADD(NEW.checkOutDate, INTERVAL
 		(
         SELECT p.checkoutPeriod 
         FROM Permissions p
         JOIN Users u ON u.permissionLevel = p.permissionLevel
-        WHERE u.is = NEW.userId
-		)
-	WHERE id = NEW.id AND expectedCheckInDate IS NULL;
-END$ DELIMITER;
+        WHERE u.id = NEW.userId
+		) DAY);
+
+END$ DELIMITER ;

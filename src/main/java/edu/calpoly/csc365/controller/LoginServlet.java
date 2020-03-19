@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("librarian");
 
             } else if (permission.equals("UG") || permission.equals("GR")) {
-                response.sendRedirect("search");
+                response.sendRedirect("student");
 
             } else {
                 response.sendRedirect("users");

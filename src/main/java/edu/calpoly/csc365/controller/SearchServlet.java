@@ -37,14 +37,19 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
-
-        request.setAttribute("message", "Hello " + cookies[2].getValue() + " ID: " + cookies[3].getValue());
-
+        Integer userId = 0;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("id")) {
+                userId = Integer.parseInt(cookie.getValue());
+                break;
+            }
+        }
         String entry = request.getParameter("entry");
         request.setAttribute("entry", entry);
 
         Set<Book> books = bookDao.getSearchedBooks(entry);
         request.setAttribute("books", books);
+        request.setAttribute("id" , userId);
 
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }

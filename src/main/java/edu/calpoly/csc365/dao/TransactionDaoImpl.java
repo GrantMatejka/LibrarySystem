@@ -3,20 +3,120 @@ package edu.calpoly.csc365.dao;
 import edu.calpoly.csc365.entity.Transaction;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.sql.Date;
 
 public class TransactionDaoImpl implements TransactionDao {
 
     Connection conn = null;
+    DaoManager dm = null;
 
     public TransactionDaoImpl(Connection conn) {
+        try {
+            DaoManager dm = DaoManagerFactory.createDaoManager();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
         this.conn = conn;
     }
 
     @Override
     public Transaction getById(int id) {
         return null;
+    }
+
+    @Override
+    public void insertCheckout(String bookId, int copyNum, int userId) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            this.dm = DaoManagerFactory.createDaoManager();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+
+        try {
+            preparedStatement = this.conn.prepareStatement("INSERT INTO Transactions (bookId, copyNum, userId, checkOutDate) VALUES (?, ?, ?, ?)");
+            preparedStatement.setString(1, bookId);
+            preparedStatement.setInt(2, copyNum);
+            preparedStatement.setInt(3, userId);
+            preparedStatement.setDate(4, date);
+            System.out.println(preparedStatement);
+            this.conn = dm.getTransConnection();
+            try{
+                this.conn.setAutoCommit(false);
+                Object returnValue = preparedStatement.execute();
+                this.conn.commit();
+            } catch(Exception e){
+                try {
+                    this.conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                try {
+                    this.conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            //boolean result = preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void insertReservation(String bookId, int userId) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            this.dm = DaoManagerFactory.createDaoManager();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+
+        try {
+            preparedStatement = this.conn.prepareStatement("INSERT INTO Reservations (dateReserved, userId, bookId) VALUES (?, ?, ?)");
+            preparedStatement.setDate(1, date);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setString(3, bookId);
+            System.out.println(preparedStatement);
+            this.conn = dm.getTransConnection();
+            try{
+                this.conn.setAutoCommit(false);
+                Boolean returnValue = preparedStatement.execute();
+                this.conn.commit();
+            } catch(Exception e){
+                try {
+                    System.out.println(e);
+                    this.conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                try {
+                    this.conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            //boolean result = preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -49,7 +149,25 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public Integer insert(Transaction obj) {
-        return null;
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("INSERT INTO Transactions(bookId," +
+                    "copyNum,userId,checkOutDate,expectedCheckInDate,extend) VALUES(?,?,?,?,?,?)");
+            preparedStatement.setString(1, obj.getBookId());
+            preparedStatement.setInt(2, obj.getCopyNum());
+            preparedStatement.setDate(3, obj.getCheckOutDate());
+            preparedStatement.setDate(4, obj.getExpectedCheckInDate());
+            preparedStatement.setBoolean(5, obj.getExtend());
+            resultSet = preparedStatement.executeQuery();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
     }
 
     @Override

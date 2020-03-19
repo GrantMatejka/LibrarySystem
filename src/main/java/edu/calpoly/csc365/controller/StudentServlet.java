@@ -1,8 +1,10 @@
 package edu.calpoly.csc365.controller;
 
+import edu.calpoly.csc365.dao.BookDao;
 import edu.calpoly.csc365.dao.DaoManagerFactory;
 import edu.calpoly.csc365.dao.Dao;
 import edu.calpoly.csc365.dao.DaoManager;
+import edu.calpoly.csc365.entity.Book;
 import edu.calpoly.csc365.entity.User;
 
 import javax.servlet.ServletException;
@@ -20,19 +22,25 @@ import java.util.Set;
 public class StudentServlet extends HttpServlet {
 
     private DaoManager dm;
-    //TODO change what dao type this is to alter the view
-    private Dao<User> userDao;
+    private BookDao bookDao;
 
     public StudentServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
-        userDao = dm.getUserDao();
+        bookDao = dm.getBookDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //HERE is where you would edit what info gets sent to the page, whatever "users" is is what gets displayed
-        //TO change this create a new method in the userDao
-        //A lot of our applications will be in Book implementation
-        request.setAttribute("message", "Hello student");
+        Cookie[] cookies = request.getCookies();
+        Integer userId = 0;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("id")) {
+                userId = Integer.parseInt(cookie.getValue());
+                break;
+            }
+        }
+        Set<Book> books = bookDao.getCheckedOutBooks(userId);
+
+        request.setAttribute("books", books);
         request.getRequestDispatcher("student.jsp").forward(request, response);
     }
 }

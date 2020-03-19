@@ -6,8 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class BookDaoImpl implements BookDao {
 
@@ -18,14 +17,138 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book getById(int id) {
-        return null;
+    public Book getById(String id) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Book book = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM Books b WHERE b.asin = ?");
+            preparedStatement.setString(1,id);
+            resultSet = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            System.out.println(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ResultSet rs = resultSet;
+            try {
+                if(!rs.first()) {
+                    System.out.println("empty set");                }
+                else {
+                    do {
+
+                        System.out.println(rs.getString("asin"));
+                        book = new Book(
+                                rs.getString("asin"),
+                                rs.getInt("copyNum"),
+                                rs.getString("filename"),
+                                rs.getString("imageUrl"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                rs.getInt("categoryId"),
+                                rs.getString("category"));
+
+                    }while(rs.next());
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return book;
     }
 
+    @Override
+    public ArrayList<Integer> getMonthBookCount() {
+        Integer[] months = new Integer[13];
+        Integer total = 0;
+        for (int i = 0; i < 13; i++) {
+            months[i] = 0;
+        }
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement =
+                    this.conn.prepareStatement("SELECT MONTH(checkOutDate) as mn, COUNT(*) as cnt FROM Transactions t GROUP BY MONTH(checkOutDate)");
+
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                months[resultSet.getInt("mn")] = resultSet.getInt("cnt");
+                total += resultSet.getInt("cnt");
+            }
+
+            months[12] = total;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new ArrayList<Integer>(Arrays.asList(months));
+    }
+
+    @Override
+    public Set<Book> getCheckedOutBooks(Integer userId) {
+        Set<Book> books = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT DISTINCT b.author, b.title, b.asin FROM Books b JOIN Transactions t ON bookId = asin AND t.userId = ? AND t.checkedIn = 0");
+
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            books = unpackCheckedOut(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return books;
+    }
+
+    @Override
     public Set<Book> getSearchedBooks(String entry) {
-        Set<Book> books;
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
+        Set<Book> books = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             preparedStatement = this.conn.prepareStatement("SELECT *, (totalQuantity - checkedOut) as stockCnt FROM " +
                     "Books JOIN Inventory ON bookId = asin WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
@@ -33,8 +156,6 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setString(1, "%"+entry+"%");
             preparedStatement.setString(2, "%"+entry+"%");
             preparedStatement.setString(3, "%"+entry+"%");
-
-            System.out.println(preparedStatement);
 
             resultSet = preparedStatement.executeQuery();
             books = unpackSearch(resultSet);
@@ -57,6 +178,11 @@ public class BookDaoImpl implements BookDao {
             }
         }
         return books;
+    }
+
+    @Override
+    public Book getById(int id) {
+        return null;
     }
 
     @Override
@@ -103,7 +229,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     private Set<Book> unpackResultSet(ResultSet rs) throws SQLException {
-        Set<Book> users = new HashSet<Book>();
+        Set<Book> books = new HashSet<Book>();
 
         while(rs.next()) {
             Book book = new Book(
@@ -115,9 +241,26 @@ public class BookDaoImpl implements BookDao {
                 rs.getString("author"),
                 rs.getInt("categoryId"),
                 rs.getString("category"));
-            users.add(book);
+            books.add(book);
         }
-        return users;
+        return books;
+    }
+    private Set<Book> unpackCheckedOut(ResultSet rs) throws SQLException {
+        Set<Book> books = new HashSet<Book>();
+
+        while(rs.next()) {
+            Book book = new Book(
+                    rs.getString("asin"),
+                    null,
+                    null,
+                    null,
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    null,
+                    null);
+            books.add(book);
+        }
+        return books;
     }
     private Set<Book> unpackSearch(ResultSet rs) throws SQLException {
         Set<Book> users = new HashSet<Book>();
