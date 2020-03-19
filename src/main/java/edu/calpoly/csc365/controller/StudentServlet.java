@@ -36,6 +36,5 @@ public class StudentServlet extends HttpServlet {
         request.setAttribute("users", users);
         request.setAttribute("message", "Hello student");
         request.getRequestDispatcher("student.jsp").forward(request, response);
-
     }
 }

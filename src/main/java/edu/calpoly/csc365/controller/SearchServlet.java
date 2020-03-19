@@ -39,8 +39,12 @@ public class SearchServlet extends HttpServlet {
         String entry = request.getParameter("entry");
         request.setAttribute("entry", entry);
 
-        if (entry != null) {
-            Set<Book> books = bookDao.getSearchedBooks(entry);
+        Set<Book> books = bookDao.getSearchedBooks(entry);
+        request.setAttribute("books", books);
+
+        request.getRequestDispatcher("search.jsp").forward(request, response);
+
+        /*if (entry != null) {
             System.out.println("Received: " + entry);
             if (books.size() > 0) {
                 PrintWriter out = response.getWriter();
@@ -60,6 +64,6 @@ public class SearchServlet extends HttpServlet {
                 out.close();
             }
 
-        }
+        }*/
     }
 }

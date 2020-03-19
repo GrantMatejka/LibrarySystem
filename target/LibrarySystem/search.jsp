@@ -39,9 +39,16 @@
                      <p><label for="entry">Search Term</label><br/><input type="text" class="form-control" name="entry" id="entry" value="" placeholder="entry" size="20"></p>
                      <p><input class="btn btn-primary" type="submit"></p>
                  </form>
-                </div>
-                <p><a href="./student">back</a></p>
-                </center>
+                 </div>
+                 <table>
+                 <c:forEach items="${books}" var="book">
+                    <tr>
+                        <td>${book.title}</td>
+                    </tr>
+                 </c:forEach>
+                 </table>
+                 <p><a href="./student">back</a></p>
+                 </center>
             </div>
         </div>
     </div>
