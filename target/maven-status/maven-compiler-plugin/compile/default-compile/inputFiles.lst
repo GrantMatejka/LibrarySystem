@@ -6,6 +6,7 @@
 /Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/controller/LibrarianServlet.java
 /Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/InventoryDao.java
 /Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/TransactionDao.java
+/Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/controller/CheckInServlet.java
 /Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/controller/ManagerServlet.java
 /Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/Reservation.java
 /Users/rohanramani/Desktop/Github/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/Transaction.java
