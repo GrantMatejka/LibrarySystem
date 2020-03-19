@@ -28,8 +28,9 @@ public class BookDaoImpl implements BookDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
-
+            preparedStatement = this.conn.prepareStatement("SELECT B.title, B.author, B.category, B.copyNum, " +
+                    "I.totalQuantity - I.checkedOut AS Avalible FROM Books AS B INNER JOIN Inventory AS I ON " +
+                    "B.asin = I.bookId WHERE B.title LIKE ? OR B.author LIKE ? OR B.category LIKE ?");
 
             preparedStatement.setString(1, "%"+entry+"%");
             preparedStatement.setString(2, "%"+entry+"%");
