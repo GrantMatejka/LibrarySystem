@@ -34,14 +34,19 @@ public class CheckOutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
-        System.out.println(cookies[0].getValue() + " " + cookies[1].getValue() + " " + cookies[2].getValue() + " " + cookies[3].getValue());
+        Integer userId = 0;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("id")) {
+                userId = Integer.parseInt(cookie.getValue());
+                break;
+            }
+        }
 
         String bookId = request.getParameter("bookId");
         String copyNum = request.getParameter("copyNum");
-        String userId = cookies[2].getValue();
 
         System.out.println("Checking outttt " + bookId + " " + copyNum + " " + userId);
-        transactionDao.insertCheckout(bookId, Integer.parseInt(copyNum), Integer.parseInt(userId));
+        transactionDao.insertCheckout(bookId, Integer.parseInt(copyNum), userId);
 
         System.out.println("Checked out");
 

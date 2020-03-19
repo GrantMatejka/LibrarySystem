@@ -31,7 +31,14 @@ public class StudentServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
-        Set<Book> books = bookDao.getCheckedOutBooks(Integer.parseInt(cookies[2].getValue()));
+        Integer userId = 0;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("id")) {
+                userId = Integer.parseInt(cookie.getValue());
+                break;
+            }
+        }
+        Set<Book> books = bookDao.getCheckedOutBooks(userId);
 
         request.setAttribute("books", books);
         request.getRequestDispatcher("student.jsp").forward(request, response);
