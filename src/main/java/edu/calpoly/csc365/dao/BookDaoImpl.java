@@ -109,6 +109,7 @@ public class BookDaoImpl implements BookDao {
                 rs.getString("filename"),
                 rs.getString("imageUrl"),
                 rs.getString("title"),
+                rs.getString("author"),
                 rs.getInt("categoryId"),
                 rs.getString("category"));
             users.add(book);
