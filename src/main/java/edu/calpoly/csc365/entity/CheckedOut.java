@@ -1,24 +1,31 @@
 package edu.calpoly.csc365.entity;
 
+import java.sql.Date;
+
 public class CheckedOut {
     private String asin;
     private String title;
-    private Integer totalQuantity;
-    private Integer checkedOut;
+    private Integer userId;
+    private Date checkOutDate;
+    private Date expectedCheckInDate;
+
 
     public CheckedOut() {
         this.asin = null;
         this.title = null;
-        this.totalQuantity = null;
-        this.checkedOut = null;
+        this.userId = null;
+        this.checkOutDate = null;
+        this.expectedCheckInDate = null;
 
     }
 
-    public CheckedOut(String asin, String title, Integer totalQuantity, Integer checkedOut) {
+    public CheckedOut(String asin, String title,  Integer userId, Date checkOutDate, Date expectedCheckInDate) {
         this.asin = asin;
         this.title = title;
-        this.totalQuantity = totalQuantity;
-        this.checkedOut = checkedOut;
+        this.userId = userId;
+        this.checkOutDate = checkOutDate;
+        this.expectedCheckInDate = expectedCheckInDate;
+
     }
 
     public String getASIN() {
@@ -33,25 +40,32 @@ public class CheckedOut {
         return this.title;
     }
 
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public Integer getTotalQuantity() {
-        return this.totalQuantity;
+
+    public Integer getuserId(){
+        return this.userId;
+    }
+    public void setuserId(Integer userId){
+        this.userId = userId;
+    }
+    public Date getcheckOutDate(){
+        return this.checkOutDate;
+    }
+    public void setcheckOutDate(Date d){
+        this.checkOutDate = d;
     }
 
-    public void setTotalQuantity(Integer totalquan) {
-        this.totalQuantity = totalquan;
+    public Date getexpectedCheckInDate(){
+        return this.expectedCheckInDate;
+    }
+    public void setexpectedCheckInDate(Date d){
+        this.expectedCheckInDate = d;
     }
 
-    public Integer getCheckedOut() {
-        return this.checkedOut;
-    }
-
-    public void setCheckedout(Integer checkedOut) {
-        this.checkedOut = checkedOut;
-    }
 
     public CheckedOut asin(String asin) {
         this.asin = asin;
@@ -63,22 +77,13 @@ public class CheckedOut {
         return this;
     }
 
-    public CheckedOut totalQuantity(Integer totalQuantity) {
-    this.totalQuantity = totalQuantity;
-    return this;
-}
-    public CheckedOut checkedOut(Integer checkedOut){
-        this.checkedOut = checkedOut;
-        return this;
-    }
-
 
     public String toString(){
         return "{" +
                 "asin ='" + getASIN() + "'," +
                 "title = '" + getTitle() + "'," +
-                "totalQuanitity = '" + getTotalQuantity() + "',"  +
-                "checkedOut = '" + getCheckedOut() + "'}";
+                "checkOutDate = '" + getcheckOutDate() + "',"  +
+                "expectedCheckInDate = '" + getexpectedCheckInDate() + "'}";
     }
 
 

@@ -25,8 +25,8 @@ public class CheckedOutDaoImpl implements CheckedOutDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try{
-            preparedStatement = this.conn.prepareStatement("SELECT DISTINCT * FROM (SELECT DISTINCT * FROM group09.Books b, " +
-                    "group09.Inventory i WHERE b.asin = i.bookId) as a");
+            preparedStatement = this.conn.prepareStatement("SELECT DISTINCT a.asin, a.title, a.userId, a.checkOutDate, a.expectedCheckInDate FROM (SELECT DISTINCT * FROM (SELECT asin, title, copyNum FROM Books b) as b, " +
+                    "(SELECT bookId, copyNum as num, userId, checkOutDate, expectedCheckInDate From Transactions t) as t WHERE DATEDIFF(t.expectedCheckInDate, SYSDATE()) < 0  AND t.bookId = b.asin AND t.num = b.copyNum) as a");
             resultSet = preparedStatement.executeQuery();
             checkedout = unpackResultSet(resultSet);
             
@@ -54,8 +54,9 @@ public class CheckedOutDaoImpl implements CheckedOutDao {
             CheckedOut checkedout = new CheckedOut(
                     rs.getString("asin"),
             rs.getString("title"),
-            rs.getInt("totalQuantity"),
-            rs.getInt("checkedOut"));
+            rs.getInt("userId"),
+            rs.getDate("checkOutDate"),
+            rs.getDate("expectedCheckInDate"));
             checkedoutlist.add(checkedout);
             System.out.println(checkedout);
         }
