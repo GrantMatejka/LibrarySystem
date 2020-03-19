@@ -26,7 +26,7 @@
 <body>
 
 <div class="row">
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 
     <div class="col">
         <div class="card">
@@ -41,19 +41,30 @@
                  </form>
                  </div>
                  <table>
-                 <c:forEach items="${books}" var="book">
-                    <tr>
-                        <td>${book.title}</td>
-                    </tr>
-                 </c:forEach>
-                 </table>
+                         <thead>Search Results</thead>
+                         <tr>
+                             <th>title</th>
+                             <th>author</th>
+                             <th>category</th>
+                             <th>stock count</th>
+                         </tr>
+
+                         <c:forEach items="${books}" var="book">
+                             <tr>
+                                 <td>${book.title}</td>
+                                 <td>${book.author}</td>
+                                 <td>${book.category}</td>
+                                 <td>${book.stockCnt}</td>
+                             </tr>
+                         </c:forEach>
+                     </table>
                  <p><a href="./student">back</a></p>
                  </center>
             </div>
         </div>
     </div>
 
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 </div>
 
 </body>
