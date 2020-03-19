@@ -14,7 +14,6 @@ DataSets also contains our CREATE table statements and our ER-Diagram.
 - [x] A sql file containing create table statements
 - [x] The source code
 - [x] User Documentation on how to use your system (Found in GitHub wiki)
-- [ ] Required deliverables are due by Friday 5pm in the final’s week
 
 # Presentation Link
 https://docs.google.com/presentation/d/1i57tprRCoPgO0LMpWPwuAPNfTDplsyd8PfdtVYbJwfI/edit?usp=sharing
