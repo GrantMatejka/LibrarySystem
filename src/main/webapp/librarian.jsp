@@ -29,24 +29,15 @@
     Message: ${message}
     </div>
     <div class="card-body">
-    <table>
-        <thead>Users</thead>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>name</th>
-            <th>permissionLevel</th>
-        </tr>
+        <div class="col-3">
+            <form method="post" action="librarian">
+                <p><label for="check_out_user">Check Out USER ID</label><br/><input type="text" class="form-control" name="check_out_user" id="check_out_user" value="" placeholder="user_id" size="20"></p>
 
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.name}</td>
-                <td>${user.permissionLevel}</td>
-            </tr>
-        </c:forEach>
-    </table>
+                <p><label for="check_out_book">Check Out BOOK ID</label><br/><input type="text" class="form-control" name="check_out_book" id="check_out _book" value="" placeholder="book_id" size="20"></p>
+                <p><input class="btn btn-primary" type="submit" ></p>
+            </form>
+        </div>
+
     </div>
     <div class="card-footer">
         <p><a href="./" class="btn btn-primary"><- back</a></p>

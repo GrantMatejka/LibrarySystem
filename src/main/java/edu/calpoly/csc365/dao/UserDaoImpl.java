@@ -76,6 +76,24 @@ public class UserDaoImpl implements UserDao {
         }
         return perm;
     }
+    public int getIDByUsername(String username){
+        int id = -1;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try{
+            preparedStatement = this.conn.prepareStatement("SELECT id FROM group09.Users WHERE username = ?");
+            preparedStatement.setString(1,username);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                id = resultSet.getInt("id");
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return id;
+    }
 
     @Override
     public Boolean authenticate(String name) {
