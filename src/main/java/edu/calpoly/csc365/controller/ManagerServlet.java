@@ -17,7 +17,7 @@ import java.sql.*;
 import java.util.Set;
 
 @WebServlet(name = "ManagerServlet", urlPatterns = "/manager")
-public class ManagerServlet extends HttpServlet {
+public class  ManagerServlet extends HttpServlet {
 
     private DaoManager dm;
     //TODO change what dao type this is to alter the view
