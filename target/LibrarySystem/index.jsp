@@ -5,22 +5,6 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.min.js"></script>
-        <title>Search</title>
-        <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-        </style>
 </head>
 
 <body>
@@ -30,17 +14,23 @@
 
     <div class="col">
         <div class="card">
+            <div class="card-header">
+                <h1>Welcome to our library management system</h1>
+
+            </div>
             <div class="card-body">
                 <center>
                 <br/>
 
                  <div class="col-3">
-                 <form method="post" action="search">
-                     <p><label for="entry">Search Term</label><br/><input type="text" class="form-control" name="entry" id="entry" value="" placeholder="entry" size="20"></p>
+                 <form method="post" action="login">
+                     <p><label for="name">User Name</label><br/><input type="text" class="form-control" name="name" id="name" value="" placeholder="username" size="20"></p>
+                     <!--<p><label for="pass">Password</label><input type="password" class="form-control" name="pass" id="pass" value="" placeholder="password" size="20"></p>-->
                      <p><input class="btn btn-primary" type="submit"></p>
                  </form>
                 </div>
-                <p><a href="./student">back</a></p>
+
+                <p><a href="./users">hard link to users</a></p>
                 </center>
             </div>
         </div>
