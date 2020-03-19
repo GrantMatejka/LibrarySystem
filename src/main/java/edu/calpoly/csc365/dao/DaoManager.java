@@ -1,5 +1,6 @@
 package edu.calpoly.csc365.dao;
 
+import edu.calpoly.csc365.entity.Book;
 import edu.calpoly.csc365.entity.CheckedOut;
 import edu.calpoly.csc365.entity.User;
 
@@ -121,6 +122,12 @@ public class DaoManager {
 
     public UserDao getUserDao2() throws SQLException {
         return new UserDaoImpl(this.getConnection());
+    }
+    public Dao<Book> getBookDao() throws SQLException{
+        return new BookDaoImpl(this.getConnection());
+    }
+    public BookDao getBookDao2() throws SQLException{
+        return new BookDaoImpl(this.getConnection());
     }
 
     public Dao<CheckedOut> getCheckedOutDao() throws SQLException{

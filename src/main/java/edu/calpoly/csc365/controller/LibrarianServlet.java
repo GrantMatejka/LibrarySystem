@@ -37,14 +37,22 @@ public class LibrarianServlet extends HttpServlet {
         //TO change this create a new method in the userDao
         //A lot of our applications will be in Book implementation
         Set<User> users = userDao.getAll();
-
+        request.getRequestDispatcher("librarian.jsp").forward(request, response);
 
 
         //TODO change this to send different data
-        request.setAttribute("users", users);
 
         request.setAttribute("message", "Hello Librarian");
-        request.getRequestDispatcher("librarian.jsp").forward(request, response);
 
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String user = request.getParameter("check_in_user");
+        request.setAttribute("check_in_user",user);
+        System.out.println(user);
+        String book = request.getParameter("check_in_book");
+        request.setAttribute("check_in_book",book);
+        System.out.println(user + book);
+
+        request.getRequestDispatcher("librarian.jsp").forward(request, response);
     }
 }

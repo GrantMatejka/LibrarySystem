@@ -17,6 +17,7 @@ edu\calpoly\csc365\dao\DaoManager$1.class
 edu\calpoly\csc365\dao\UserDao.class
 edu\calpoly\csc365\controller\ManagerServlet.class
 edu\calpoly\csc365\users\manager.class
+edu\calpoly\csc365\controller\SearchServlet.class
 edu\calpoly\csc365\dao\DaoManager.class
 edu\calpoly\csc365\entity\Permission.class
 edu\calpoly\csc365\dao\DaoCommand.class

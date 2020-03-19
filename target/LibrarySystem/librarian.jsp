@@ -29,24 +29,15 @@
     Message: ${message}
     </div>
     <div class="card-body">
-    <table>
-        <thead>Users</thead>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>name</th>
-            <th>permissionLevel</th>
-        </tr>
-
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.name}</td>
-                <td>${user.permissionLevel}</td>
-            </tr>
-        </c:forEach>
-    </table>
+        <div class="col-3">
+            <form method="post" action="check_in_user">
+                <p><label for="check_in_user">Check Out</label><br/><input type="text" class="form-control" name="check_in_user" id="check_in_user" value="" placeholder="user_id" size="20"></p>
+            </form>
+            <form method="post" action="check_in_book">
+                <p><label for="check_in_book">Check Out</label><br/><input type="text" class="form-control" name="check_in_book" id="check_in_book" value="" placeholder="book_id" size="20"></p>
+                <p><input class="btn btn-primary" type="submit"></p>
+            </form>
+        </div>
 
     </div>
     <div class="card-footer">
