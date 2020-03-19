@@ -19,34 +19,40 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.Set;
-import java.time.LocalDate;
 
 @WebServlet(name = "CheckOutServlet", urlPatterns = "/checkOut")
 public class CheckOutServlet extends HttpServlet {
 
     private DaoManager dm;
 
-    private TransactionDaoImpl transactionDaoImpl = null;
+    private TransactionDao transactionDao = null;
 
     public CheckOutServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
-        transactionDaoImpl = dm.getTransactionDao();
+        transactionDao = dm.getTransactionDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        System.out.println(cookies[0].getValue() + " " + cookies[1].getValue() + " " + cookies[2].getValue() + " " + cookies[3].getValue());
+
+        String bookId = request.getParameter("bookId");
+        String copyNum = request.getParameter("copyNum");
+        String userId = cookies[2].getValue();
+
+        System.out.println("Checking outttt " + bookId + " " + copyNum + " " + userId);
+        transactionDao.insertCheckout(bookId, Integer.parseInt(copyNum), Integer.parseInt(userId));
+
+        System.out.println("Checked out");
+
         request.getRequestDispatcher("checkOut.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String bookId = request.getParameter("bookId");
-        String copyNum = request.getParameter("copyNum");
-        String userId = request.getParameter("userId");
 
-        transactionDaoImpl.insertCheckout(bookId, Integer.parseInt(copyNum), Integer.parseInt(userId));
-
-        request.getRequestDispatcher("checkOut.jsp").forward(request, response);
+        response.sendRedirect("search");
     }
 
 

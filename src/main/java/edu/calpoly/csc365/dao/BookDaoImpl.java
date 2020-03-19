@@ -23,9 +23,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     public Set<Book> getSearchedBooks(String entry) {
-        Set<Book> books;
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
+        Set<Book> books = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             preparedStatement = this.conn.prepareStatement("SELECT *, (totalQuantity - checkedOut) as stockCnt FROM " +
                     "Books JOIN Inventory ON bookId = asin WHERE title LIKE ? OR author LIKE ? OR category LIKE ? ");
@@ -33,8 +33,6 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setString(1, "%"+entry+"%");
             preparedStatement.setString(2, "%"+entry+"%");
             preparedStatement.setString(3, "%"+entry+"%");
-
-            System.out.println(preparedStatement);
 
             resultSet = preparedStatement.executeQuery();
             books = unpackSearch(resultSet);

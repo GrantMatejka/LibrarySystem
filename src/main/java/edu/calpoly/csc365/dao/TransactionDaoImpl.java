@@ -3,15 +3,24 @@ package edu.calpoly.csc365.dao;
 import edu.calpoly.csc365.entity.Transaction;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.sql.Date;
 
 public class TransactionDaoImpl implements TransactionDao {
 
     Connection conn = null;
-
+    DaoManager dm = null;
 
     public TransactionDaoImpl(Connection conn) {
+        try {
+            DaoManager dm = DaoManagerFactory.createDaoManager();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
         this.conn = conn;
     }
 
@@ -24,17 +33,42 @@ public class TransactionDaoImpl implements TransactionDao {
     public void insertCheckout(String bookId, int copyNum, int userId) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        try {
+            this.dm = DaoManagerFactory.createDaoManager();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
 
         try {
-            preparedStatement = this.conn.prepareStatement("INSERT INTO Transactions (bookId, copyNum, userId) VALUES (?, ?, ?)");
+            preparedStatement = this.conn.prepareStatement("INSERT INTO Transactions (bookId, copyNum, userId, checkOutDate) VALUES (?, ?, ?, ?)");
             preparedStatement.setString(1, bookId);
             preparedStatement.setInt(2, copyNum);
             preparedStatement.setInt(3, userId);
-
-            resultSet = preparedStatement.executeQuery();
-        }
-
-        catch (SQLException e) {
+            preparedStatement.setDate(4, date);
+            System.out.println(preparedStatement);
+            this.conn = dm.getTransConnection();
+            try{
+                this.conn.setAutoCommit(false);
+                Object returnValue = preparedStatement.execute();
+                this.conn.commit();
+            } catch(Exception e){
+                try {
+                    this.conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                try {
+                    this.conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            //boolean result = preparedStatement.execute();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -51,9 +85,9 @@ public class TransactionDaoImpl implements TransactionDao {
             preparedStatement.setInt(2, userId);
 
             resultSet = preparedStatement.executeQuery();
-        }
+            this.conn.commit();
 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

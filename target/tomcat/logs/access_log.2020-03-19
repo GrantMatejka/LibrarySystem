@@ -1,0 +1,14 @@
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:45 -0700] "GET /LibrarySystem HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:46 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1199 http-bio-8080-exec-3 668
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:49 -0700] "POST /LibrarySystem/login HTTP/1.1" 302 - http-bio-8080-exec-4 908
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:49 -0700] "GET /LibrarySystem/search HTTP/1.1" 200 1784 http-bio-8080-exec-5 380
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:53 -0700] "POST /LibrarySystem/search HTTP/1.1" 200 450465 http-bio-8080-exec-6 233
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:56 -0700] "GET /LibrarySystem/checkOut?bookId=1625231539&copyNum=89648&bookTitle=Kaplan%20New%20SAT%20Premier%202016%20with%205%20Practice%20Tests:%20Personalized%20Feedback%20+%20Book%20+%20Online%20+%20DVD%20+%20Mobile%20(Kaplan%20Test%20Prep)&bookAuthor=Kaplan HTTP/1.1" 200 711 http-bio-8080-exec-7 862
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:20:58 -0700] "GET /LibrarySystem/search.jsp HTTP/1.1" 200 1784 http-bio-8080-exec-9 1
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:02 -0700] "POST /LibrarySystem/search HTTP/1.1" 200 450465 http-bio-8080-exec-10 197
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:25 -0700] "GET /LibrarySystem/checkOut?bookId=992601126&copyNum=89609&bookTitle=Life%20in%20the%20UK%202013%203-in-1%20Study%20Guide&bookAuthor=Ms%20Sandra%20Royle HTTP/1.1" 200 636 http-bio-8080-exec-10 594
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:26 -0700] "GET /LibrarySystem/search.jsp HTTP/1.1" 200 1784 http-bio-8080-exec-10 1
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:29 -0700] "POST /LibrarySystem/search HTTP/1.1" 200 450465 http-bio-8080-exec-5 187
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:43 -0700] "GET /LibrarySystem/checkOut?bookId=979353815&copyNum=89518&bookTitle=Learn%20About%20the%20United%20States%20%20Quick%20Civics%20Lessons%20for%20the%20New%20Naturalization%20Test&bookAuthor=U.S.%20Citizenship%20and%20Immigration%20Services HTTP/1.1" 200 707 http-bio-8080-exec-5 545
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:45 -0700] "GET /LibrarySystem/search.jsp HTTP/1.1" 200 1784 http-bio-8080-exec-5 1
+0:0:0:0:0:0:0:1 - - [19/Mar/2020:09:21:48 -0700] "POST /LibrarySystem/search HTTP/1.1" 200 450465 http-bio-8080-exec-5 208
