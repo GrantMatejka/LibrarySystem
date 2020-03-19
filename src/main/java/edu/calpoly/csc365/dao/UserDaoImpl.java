@@ -144,7 +144,7 @@ public class UserDaoImpl implements UserDao {
         }
         return users;
     }
-    
+
 
     @Override
     public Integer insert(User obj) {
