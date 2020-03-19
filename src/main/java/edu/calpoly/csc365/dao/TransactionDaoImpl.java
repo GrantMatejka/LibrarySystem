@@ -68,7 +68,7 @@ public class TransactionDaoImpl implements TransactionDao {
         while(rs.next()) {
             Transaction transaction = new Transaction(
                     rs.getInt("id"),
-                    rs.getInt("bookId"),
+                    rs.getString("bookId"),
                     rs.getInt("copyNum"),
                     rs.getInt("userId"),
                     rs.getDate("checkOutDate"),
