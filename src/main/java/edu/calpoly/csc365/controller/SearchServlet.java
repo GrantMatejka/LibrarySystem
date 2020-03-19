@@ -51,10 +51,10 @@ public class SearchServlet extends HttpServlet {
                         "        }td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;" +
                         "        }tr:nth-child(even) {background-color: #dddddd;" +
                         "        }</style></head><body>");
-                out.println("<div class=\"col-2\"></div><div class=\"col\"><p><a href=\"./search.jsp\" class=\"btn btn-primary\"><- back</a></p><table><thead>Search Results</thead><tr> <th>title</th><th>author</th><th>category</th><th>Copy num</th></tr>");
+                out.println("<div class=\"col-2\"></div><div class=\"col\"><p><a href=\"./search.jsp\" class=\"btn btn-primary\"><- back</a></p><table><thead>Search Results</thead><tr> <th>title</th><th>author</th><th>category</th><th>stock</th></tr>");
 
                 for (Book book : books) {
-                    out.println("<tr><td>" + book.getTitle() + "</td><td>" + book.getAuthor() + "</td><td>" + book.getCategory() + "</td><td>" + book.getCopyNum() + "</td></tr>");
+                    out.println("<tr><td>" + book.getTitle() + "</td><td>" + book.getAuthor() + "</td><td>" + book.getCategory() + "</td><td>" + book.getStockCnt() + "</td></tr>");
                 }
                 out.println("</table><p><a href=\"./search.jsp\" class=\"btn btn-primary\"><- back</a></p></div><div class=\"col-2\"></div>");
                 out.close();
