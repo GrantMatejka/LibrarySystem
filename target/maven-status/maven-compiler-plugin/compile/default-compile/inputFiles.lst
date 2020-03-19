@@ -1,7 +1,11 @@
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/controller/ManagerServlet.java
+/Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/InventoryDaoImpl.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/TransactionDao.java
+/Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/CheckedOutDaoImpl.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/DaoManager.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/User.java
+/Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/CheckedOut.java
+/Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/InventoryDao.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/Permission.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/Inventory.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/BookDao.java
@@ -21,6 +25,7 @@
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/TransactionDaoImpl.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/users/manager.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/users/student.java
+/Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/dao/CheckedOutDao.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/entity/Transaction.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/controller/StudentServlet.java
 /Users/grantmatejka/Desktop/LibrarySystem/src/main/java/edu/calpoly/csc365/controller/UserServlet.java
