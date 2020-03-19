@@ -9,6 +9,7 @@ public class Book {
    private String author;
    private Integer categoryId; 
    private String category;
+   private Integer stockCnt;
 
    public Book() {
       this.asin = null;
@@ -19,6 +20,7 @@ public class Book {
       this.author = null;
       this.categoryId = null;
       this.category = null;
+      this.stockCnt = null;
    }
 
    public Book(String asin, Integer copyNum, String filename, String imageUrl, String title, String author, Integer categoryId, String category) {
@@ -30,6 +32,18 @@ public class Book {
       this.author = author;
       this.categoryId = categoryId;
       this.category = category;
+   }
+
+   public Book(String asin, Integer copyNum, String filename, String imageUrl, String title, String author, Integer categoryId, String category, Integer stockCnt) {
+      this.asin = asin;
+      this.copyNum = copyNum;
+      this.filename = filename;
+      this.imageUrl = imageUrl;
+      this.title = title;
+      this.author = author;
+      this.categoryId = categoryId;
+      this.category = category;
+      this.stockCnt = stockCnt;
    }
 
    public String getAsin() {
@@ -96,6 +110,10 @@ public class Book {
       this.category = category;
    }
 
+   public Integer getStockCnt() { return this.stockCnt; }
+
+   public void setStockCnt(Integer stockCnt) { this.stockCnt = stockCnt; }
+
    public Book asin(String asin) {
       this.asin = asin;
       return this;
@@ -133,6 +151,11 @@ public class Book {
 
    public Book category(String category) {
       this.category = category;
+      return this;
+   }
+
+   public Book stockCnt(Integer stockCnt) {
+      this.stockCnt = stockCnt;
       return this;
    }
 
