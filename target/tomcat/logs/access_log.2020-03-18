@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:19:42:23 -0700] "GET /LibrarySystem HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:19:42:24 -0700] "GET /LibrarySystem/ HTTP/1.1" 200 1199 http-bio-8080-exec-3 731
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:19:42:29 -0700] "POST /LibrarySystem/login HTTP/1.1" 302 - http-bio-8080-exec-4 905
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:19:42:30 -0700] "GET /LibrarySystem/student HTTP/1.1" 200 3591 http-bio-8080-exec-5 448
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:19:42:31 -0700] "GET /LibrarySystem/search.jsp HTTP/1.1" 200 1671 http-bio-8080-exec-6 54
+0:0:0:0:0:0:0:1 - - [18/Mar/2020:19:42:35 -0700] "POST /LibrarySystem/search HTTP/1.1" 200 160166 http-bio-8080-exec-7 770

@@ -1,5 +1,6 @@
 package edu.calpoly.csc365.controller;
 
+import edu.calpoly.csc365.dao.BookDao;
 import edu.calpoly.csc365.dao.DaoManagerFactory;
 import edu.calpoly.csc365.dao.Dao;
 import edu.calpoly.csc365.dao.DaoManager;
@@ -22,7 +23,7 @@ import java.util.Set;
 public class SearchServlet extends HttpServlet {
 
     private DaoManager dm;
-    private Dao<Book> bookDao;
+    private BookDao bookDao;
 
     public SearchServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
@@ -30,12 +31,25 @@ public class SearchServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String entry = request.getParameter("entry");
+        request.setAttribute("entry", entry);
 
+        if (entry != null) {
+            Set<Book> books = bookDao.getSearchedBooks(entry);
+            System.out.println("Received: " + entry);
+            if (books.size() > 0) {
+                PrintWriter out = response.getWriter();
+                for (Book book : books) {
+                    out.println(book);
+                }
+                out.close();
+            }
+
+        }
     }
 }
