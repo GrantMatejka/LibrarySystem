@@ -144,26 +144,7 @@ public class UserDaoImpl implements UserDao {
         }
         return users;
     }
-
-    public String extendBook(String asin) {
-        String name = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            preparedStatement = this.conn.prepareStatement("UPDATE Transactions SET expectedCheckInDate = " +
-                    "expectedCheckInDate + 7 where Transactions.bookId = ?");
-            preparedStatement.setString(1, username);
-
-            resultSet = preparedStatement.executeQuery();
-
-            Set<User> users = unpackResultSet(resultSet);
-            name = users.iterator().next().getName();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return name;
-    }
+    
 
     @Override
     public Integer insert(User obj) {
