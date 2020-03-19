@@ -8,4 +8,5 @@ public interface UserDao extends Dao<User> {
     public String getId(String username);
     public String GetPermission(String name);
     public Boolean authenticate(String name);
+    public int getIDByUsername(String username);
 }

@@ -54,6 +54,26 @@
         </c:forEach>
         </tr>
     </table>
+        <table>
+            <thread>CheckedOut</thread>
+            <tr>
+                <th>ASIN</th>
+                <th>title</th>
+                <th>userId</th>
+                <th>checkOutDate</th>
+                <th>expectedCheckInDate</th>
+            </tr>
+            <c:forEach items = "${books}" var = "books">
+                <tr>
+                    <td>${books.ASIN}</td>
+                    <td>${books.title}</td>
+                    <td>${books.userId}}</td>
+                    <td>${books.checkOutDate}</td>
+                    <td>${books.expectedCheckInDate}</td>
+
+                </tr>
+            </c:forEach>
+        </table>
     </div>
     <div class="card-footer">
         <p><a href="./" class="btn btn-primary"><- back</a></p>

@@ -1,5 +1,5 @@
 # CSC 365 Final Project
-### Team Members: Grant Matejka, Matthew Bennin
+### Team Members: Grant Matejka, Matthew Bennin, Rohan Ramani, Alex Goodell
 
 # DataSets
 DataSets contains all pertinent csv data for Users and Books, as well as corresponding INSERT statements.

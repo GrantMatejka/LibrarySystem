@@ -10,4 +10,5 @@ public interface BookDao extends Dao<Book> {
     public ArrayList<Integer> getMonthBookCount();
     public Set<Book> getCheckedOutBooks(Integer userId);
     public Set<Book> getSearchedBooks(String entry);
+    public Book getById(String id);
 }

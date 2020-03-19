@@ -149,7 +149,25 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public Integer insert(Transaction obj) {
-        return null;
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("INSERT INTO Transactions(bookId," +
+                    "copyNum,userId,checkOutDate,expectedCheckInDate,extend) VALUES(?,?,?,?,?,?)");
+            preparedStatement.setString(1, obj.getBookId());
+            preparedStatement.setInt(2, obj.getCopyNum());
+            preparedStatement.setDate(3, obj.getCheckOutDate());
+            preparedStatement.setDate(4, obj.getExpectedCheckInDate());
+            preparedStatement.setBoolean(5, obj.getExtend());
+            resultSet = preparedStatement.executeQuery();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
     }
 
     @Override

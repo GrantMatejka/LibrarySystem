@@ -4,6 +4,7 @@ import edu.calpoly.csc365.dao.BookDao;
 import edu.calpoly.csc365.dao.DaoManagerFactory;
 import edu.calpoly.csc365.dao.Dao;
 import edu.calpoly.csc365.dao.DaoManager;
+import edu.calpoly.csc365.entity.CheckedOut;
 import edu.calpoly.csc365.entity.User;
 
 import javax.servlet.ServletException;
@@ -19,15 +20,21 @@ import java.util.ArrayList;
 import java.util.Set;
 
 @WebServlet(name = "ManagerServlet", urlPatterns = "/manager")
-public class ManagerServlet extends HttpServlet {
+public class  ManagerServlet extends HttpServlet {
 
     private DaoManager dm;
     //TODO change what dao type this is to alter the view
     private BookDao bookDao;
 
+    private Dao<User> userDao;
+    private Dao<CheckedOut> CheckedOutDao;
+
     public ManagerServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
+        userDao = dm.getUserDao();
+        CheckedOutDao = dm  .getCheckedOutDao();
         bookDao = dm.getBookDao();
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +43,10 @@ public class ManagerServlet extends HttpServlet {
         //A lot of our applications will be in Book implementation
         ArrayList<Integer> months = bookDao.getMonthBookCount();
         request.setAttribute("months", months);
+        Set<User> users = userDao.getAll();
+        Set<CheckedOut> checkedOut = CheckedOutDao.getAll();
+        request.setAttribute("users", users);
+        request.setAttribute("books", checkedOut);
         request.setAttribute("message", "Hello manager");
         request.getRequestDispatcher("manager.jsp").forward(request, response);
 
