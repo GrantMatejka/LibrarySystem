@@ -33,18 +33,21 @@ public class ReservationServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("checkOut.jsp").forward(request, response);
+        Cookie[] cookies = request.getCookies();
+        System.out.println(cookies[0].getValue() + " " + cookies[1].getValue() + " " + cookies[2].getValue() + " " + cookies[3].getValue());
+
+        String bookId = request.getParameter("bookId");
+        String userId = cookies[2].getValue();
+
+        transactionDao.insertReservation(bookId, Integer.parseInt(userId));
+
+        request.getRequestDispatcher("reserve.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String bookId = request.getParameter("bookId");
-        String userId = request.getParameter("userId");
-
-        transactionDao.insertReservation(bookId, Integer.parseInt(userId));
-
-        request.getRequestDispatcher("reserve.jsp").forward(request, response);
+        response.sendRedirect("search");
     }
 
 
