@@ -1,5 +1,5 @@
 DELIMITER $
-CREATE TRIGGER `chekout_period` AFTER INSERT ON `Transactions`
+CREATE TRIGGER `checkout_period` AFTER INSERT ON `Transactions`
 FOR EACH ROW
 BEGIN
 	UPDATE Transactions SET expectedCheckInDate = checkOutDate + 
@@ -10,5 +10,4 @@ BEGIN
         WHERE u.is = NEW.userId
 		)
 	WHERE id = NEW.id AND expectedCheckInDate IS NULL;
-END$
-DELIMITER;
+END$ DELIMITER;
