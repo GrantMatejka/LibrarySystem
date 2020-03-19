@@ -35,11 +35,16 @@ public class ReservationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
         System.out.println(cookies[0].getValue() + " " + cookies[1].getValue() + " " + cookies[2].getValue() + " " + cookies[3].getValue());
-
+        Integer userId = 0;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("id")) {
+                userId = Integer.parseInt(cookie.getValue());
+                break;
+            }
+        }
         String bookId = request.getParameter("bookId");
-        String userId = cookies[2].getValue();
 
-        transactionDao.insertReservation(bookId, Integer.parseInt(userId));
+        transactionDao.insertReservation(bookId, userId);
 
         request.getRequestDispatcher("reserve.jsp").forward(request, response);
     }

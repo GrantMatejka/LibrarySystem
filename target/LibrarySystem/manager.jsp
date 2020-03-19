@@ -30,22 +30,29 @@
     </div>
     <div class="card-body">
     <table>
-        <thead>Users</thead>
+        <thead>Months</thead>
         <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>name</th>
-            <th>permissionLevel</th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>April</th>
+            <th>May</th>
+            <th>June</th>
+            <th>July</th>
+            <th>August</th>
+            <th>Sept</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+            <th>Total</th>
         </tr>
+        <tr>
+        <c:forEach items="${months}" var="month">
 
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.name}</td>
-                <td>${user.permissionLevel}</td>
-            </tr>
+                <td>${month}</td>
+
         </c:forEach>
+        </tr>
     </table>
     </div>
     <div class="card-footer">

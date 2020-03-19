@@ -100,6 +100,7 @@ public class TransactionDaoImpl implements TransactionDao {
                 this.conn.commit();
             } catch(Exception e){
                 try {
+                    System.out.println(e);
                     this.conn.rollback();
                 } catch (SQLException ex) {
                     ex.printStackTrace();

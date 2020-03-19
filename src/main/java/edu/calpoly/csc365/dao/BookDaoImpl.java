@@ -6,8 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class BookDaoImpl implements BookDao {
 
@@ -20,6 +19,48 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book getById(int id) {
         return null;
+    }
+
+    @Override
+    public ArrayList<Integer> getMonthBookCount() {
+        Integer[] months = new Integer[13];
+        Integer total = 0;
+        for (int i = 0; i < 13; i++) {
+            months[i] = 0;
+        }
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement =
+                    this.conn.prepareStatement("SELECT MONTH(checkOutDate) as mn, COUNT(*) as cnt FROM Transactions t GROUP BY MONTH(checkOutDate)");
+
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                months[resultSet.getInt("mn")] = resultSet.getInt("cnt");
+                total += resultSet.getInt("cnt");
+            }
+
+            months[12] = total;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new ArrayList<Integer>(Arrays.asList(months));
     }
 
     @Override
