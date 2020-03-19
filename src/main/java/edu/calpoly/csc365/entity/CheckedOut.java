@@ -82,6 +82,7 @@ public class CheckedOut {
         return "{" +
                 "asin ='" + getASIN() + "'," +
                 "title = '" + getTitle() + "'," +
+                "userId = '" + getuserId() + "'," +
                 "checkOutDate = '" + getcheckOutDate() + "',"  +
                 "expectedCheckInDate = '" + getexpectedCheckInDate() + "'}";
     }

@@ -1,6 +1,6 @@
 package edu.calpoly.csc365.entity;
 
-public class   Inventory {
+public class Inventory {
    private String bookId;
    private Integer totalQuantity;
    private Integer checkedOut; // Quantity of this book checked out
