@@ -38,7 +38,7 @@ public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
 
-        request.setAttribute("message", cookies[1].getValue());
+        request.setAttribute("message", "Hello " + cookies[2].getValue() + " ID: " + cookies[3].getValue());
 
         String entry = request.getParameter("entry");
         request.setAttribute("entry", entry);

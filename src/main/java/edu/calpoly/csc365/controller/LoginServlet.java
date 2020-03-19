@@ -37,6 +37,12 @@ public class LoginServlet extends HttpServlet {
 
             String permission = authenticationService.GetPermission(name);
 
+            Cookie nameCookie = authenticationService.createNameCookie(name);
+            response.addCookie(nameCookie);
+
+            Cookie idCookie = authenticationService.createIdCookie(name);
+            response.addCookie(idCookie);
+
             if (permission.equals("MAN")) {
                 response.sendRedirect("manager");
 
@@ -46,10 +52,8 @@ public class LoginServlet extends HttpServlet {
             } else if (permission.equals("UG") || permission.equals("GR")) {
                 response.sendRedirect("search");
 
-
             } else {
                 response.sendRedirect("users");
-
             }
         } else {
             response.sendRedirect("./");

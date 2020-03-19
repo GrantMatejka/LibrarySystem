@@ -59,10 +59,10 @@
                         <td>${book.category}</td>
                         <td>${book.stockCnt}</td>
                         <c:if test="${book.stockCnt > 2}">
-                        <td><a href="./checkOut.jsp?bookAsin=${book.asin}&bookCopyNum=${book.copyNum}&userId = ">Check Out</a></td>
+                        <td><a href="./checkOut.jsp?bookAsin=${book.asin}&bookCopyNum=${book.copyNum}">Check Out</a></td>
                         </c:if>
                         <c:if test="${book.stockCnt == 2}">
-                        <td><a href="./Reserve.jsp">Reserve</a></td>
+                        <td><a href="./Reserve.jsp?bookAsin=${book.asin}">Check Out</a></td>
                         </c:if>
                     </tr>
                  </c:forEach>

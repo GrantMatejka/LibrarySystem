@@ -7,7 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 public class AuthenticationService {
-    UserDao userDao = null;
+    private UserDao userDao = null;
 
     public AuthenticationService(UserDao userDao) {
         this.userDao = userDao;
@@ -17,6 +17,10 @@ public class AuthenticationService {
         Boolean authenticated = false;
         authenticated = userDao.authenticate(name);
         return authenticated;
+    }
+
+    public UserDao getUserDao() {
+        return this.userDao;
     }
 
     public static Cookie getLoginCookie(HttpServletRequest request) {
@@ -39,6 +43,19 @@ public class AuthenticationService {
         //setting cookie to expire in 5 mins
         loginCookie.setMaxAge(5*60);
         return loginCookie;
+    }
+
+    public Cookie createNameCookie(String name) {
+        // create cookie
+
+        Cookie nameCookie = new Cookie("name", userDao.getName(name));
+        return nameCookie;
+    }
+
+    public Cookie createIdCookie(String name) {
+        // create cookie
+        Cookie idCookie = new Cookie("id", userDao.getId(name));
+        return idCookie;
     }
 
     public String GetPermission(String name) {

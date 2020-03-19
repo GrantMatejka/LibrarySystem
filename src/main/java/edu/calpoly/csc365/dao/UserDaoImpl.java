@@ -8,12 +8,53 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+import javax.servlet.http.Cookie;
 
 public class UserDaoImpl implements UserDao {
     Connection conn = null;
 
     public UserDaoImpl(Connection conn) {
         this.conn = conn;
+    }
+
+    @Override
+    public String getName(String username) {
+        String name = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM group09.Users WHERE username = ?");
+            preparedStatement.setString(1, username);
+
+            resultSet = preparedStatement.executeQuery();
+
+            Set<User> users = unpackResultSet(resultSet);
+            name = users.iterator().next().getName();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    @Override
+    public String getId(String username) {
+        int id = 0;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM group09.Users WHERE username = ?");
+            preparedStatement.setString(1, username);
+
+            resultSet = preparedStatement.executeQuery();
+
+            Set<User> users = unpackResultSet(resultSet);
+            id = users.iterator().next().getId();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Integer.toString(id);
     }
 
     @Override
