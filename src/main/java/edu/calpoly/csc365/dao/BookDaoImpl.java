@@ -22,6 +22,39 @@ public class BookDaoImpl implements BookDao {
         return null;
     }
 
+    @Override
+    public Set<Book> getCheckedOutBooks(Integer userId) {
+        Set<Book> books = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = this.conn.prepareStatement("SELECT DISTINCT b.author, b.title, b.asin FROM Books b JOIN Transactions t ON bookId = asin AND t.userId = ? AND t.checkedIn = 0");
+
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            books = unpackCheckedOut(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return books;
+    }
+
+    @Override
     public Set<Book> getSearchedBooks(String entry) {
         Set<Book> books = null;
         PreparedStatement preparedStatement = null;
@@ -101,7 +134,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     private Set<Book> unpackResultSet(ResultSet rs) throws SQLException {
-        Set<Book> users = new HashSet<Book>();
+        Set<Book> books = new HashSet<Book>();
 
         while(rs.next()) {
             Book book = new Book(
@@ -113,9 +146,26 @@ public class BookDaoImpl implements BookDao {
                 rs.getString("author"),
                 rs.getInt("categoryId"),
                 rs.getString("category"));
-            users.add(book);
+            books.add(book);
         }
-        return users;
+        return books;
+    }
+    private Set<Book> unpackCheckedOut(ResultSet rs) throws SQLException {
+        Set<Book> books = new HashSet<Book>();
+
+        while(rs.next()) {
+            Book book = new Book(
+                    rs.getString("asin"),
+                    null,
+                    null,
+                    null,
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    null,
+                    null);
+            books.add(book);
+        }
+        return books;
     }
     private Set<Book> unpackSearch(ResultSet rs) throws SQLException {
         Set<Book> users = new HashSet<Book>();
