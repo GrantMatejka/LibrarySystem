@@ -30,17 +30,18 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public void insertCheckout(String bookId, int copyNum, int userId) {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+    public void checkout (String asin, int copuNumber, int userId) {
+        PrepareStatement preparedStatement;
+        ResultSet resultSet;
+
         try {
             this.dm = DaoManagerFactory.createDaoManager();
-        } catch (Exception e){
-            System.out.println(e);
+        } catch (Exception exception) {
+            System.out.println("Unable to create Manager")
         }
 
-        long millis = System.currentTimeMillis();
-        java.sql.Date date = new java.sql.Date(millis);
+        int time = System.currentTimeMillis();
+        Java.sql.Date date_of_checkin = new java.sql.Date(time);
 
         try {
             preparedStatement = this.conn.prepareStatement("INSERT INTO Transactions (bookId, copyNum, userId, checkOutDate) VALUES (?, ?, ?, ?)");
@@ -57,8 +58,8 @@ public class TransactionDaoImpl implements TransactionDao {
             } catch(Exception e){
                 try {
                     this.conn.rollback();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             } finally {
                 try {
@@ -67,13 +68,8 @@ public class TransactionDaoImpl implements TransactionDao {
                     e.printStackTrace();
                 }
             }
-            //boolean result = preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
     }
-
+    
     @Override
     public void insertReservation(String bookId, int userId) {
         PreparedStatement preparedStatement = null;
