@@ -16,3 +16,5 @@ DataSets also contains our CREATE table statements and our ER-Diagram.
 - [ ] User Documentation on how to use your system
 - [ ] Required deliverables are due by Friday 5pm in the final’s week
 
+# Presentation Link
+https://docs.google.com/presentation/d/1i57tprRCoPgO0LMpWPwuAPNfTDplsyd8PfdtVYbJwfI/edit?usp=sharing
