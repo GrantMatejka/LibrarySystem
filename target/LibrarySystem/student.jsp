@@ -29,24 +29,11 @@
     Message: ${message}
     </div>
     <div class="card-body">
-    <table>
-        <thead>Users</thead>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>name</th>
-            <th>permissionLevel</th>
-        </tr>
-
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.name}</td>
-                <td>${user.permissionLevel}</td>
-            </tr>
-        </c:forEach>
-    </table>
+        <h1>Search Book</h1>
+        <p><a href="./searchBook">Search for a book</a></p>
+        <p><a href="./users">Check out a book</a></p>
+        <p><a href="./users">Check in a book</a></p>
+        <p><a href="./users">Reserve a book</a></p>
     </div>
     <div class="card-footer">
         <p><a href="./" class="btn btn-primary"><- back</a></p>
