@@ -28,7 +28,8 @@ public class BookDaoImpl implements BookDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE '%%?%' " + "OR author LIKE '%%?%' OR category LIKE '%%?%'");
+            preparedStatement = this.conn.prepareStatement("SELECT * FROM Books WHERE title LIKE '%%?%' " +
+                    "OR author LIKE '%%?%' OR category LIKE '%%?%'");
 
             preparedStatement.setString(1, entry);
             preparedStatement.setString(2, entry);
