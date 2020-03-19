@@ -139,4 +139,11 @@ public class DaoManager {
     }
 
 
+    public InventoryDao getInventoryDao() throws SQLException {
+        return new InventoryDaoImpl(this.getConnection());
+    }
+
+    public TransactionDao getTransactionDao() throws SQLException{
+        return new TransactionDaoImpl(this.getConnection());
+    }
 }

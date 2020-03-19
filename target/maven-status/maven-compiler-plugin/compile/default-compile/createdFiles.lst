@@ -8,6 +8,8 @@ edu\calpoly\csc365\entity\Inventory.class
 edu\calpoly\csc365\entity\Book.class
 edu\calpoly\csc365\entity\Transaction.class
 edu\calpoly\csc365\dao\CheckedOutDao.class
+edu\calpoly\csc365\dao\InventoryDaoImpl.class
+edu\calpoly\csc365\dao\InventoryDao.class
 edu\calpoly\csc365\dao\Dao.class
 edu\calpoly\csc365\dao\TransactionDaoImpl.class
 edu\calpoly\csc365\dao\TransactionDao.class

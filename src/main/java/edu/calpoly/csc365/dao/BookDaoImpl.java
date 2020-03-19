@@ -26,13 +26,39 @@ public class BookDaoImpl implements BookDao {
             preparedStatement = this.conn.prepareStatement("SELECT * FROM Books b WHERE b.asin = ?");
             preparedStatement.setString(1,id);
             resultSet = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            System.out.println(id);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            ResultSet rs = resultSet;
+            try {
+                System.out.println(rs.getString("asin"));
+                if(!rs.first()) {
+                    System.out.println("empty set");                }
+                else {
+                    do {
+
+                        System.out.println(rs.getString("asin"));
+                        book = new Book(
+                                rs.getString("asin"),
+                                rs.getInt("copyNum"),
+                                rs.getString("filename"),
+                                rs.getString("imageUrl"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                rs.getInt("categoryId"),
+                                rs.getString("category"),
+                                rs.getInt("stockCnt"));
+
+                    }while(rs.next());
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
             try {
                 if (resultSet != null)
                     resultSet.close();
-                    return null;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -43,21 +69,7 @@ public class BookDaoImpl implements BookDao {
                 e.printStackTrace();
             }
         }
-        ResultSet rs = resultSet;
-        try {
-            book = new Book(
-                    rs.getString("asin"),
-                    rs.getInt("copyNum"),
-                    rs.getString("filename"),
-                    rs.getString("imageUrl"),
-                    rs.getString("title"),
-                    rs.getString("author"),
-                    rs.getInt("categoryId"),
-                    rs.getString("category"),
-                    rs.getInt("stockCnt"));
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
+
         return book;
     }
 

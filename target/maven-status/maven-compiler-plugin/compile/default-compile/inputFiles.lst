@@ -1,5 +1,6 @@
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\service\AuthenticationService.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\DaoManagerFactory.java
+C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\InventoryDao.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\DaoCommand.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\DaoManager.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\users\student.java
@@ -24,6 +25,7 @@ C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\c
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\CheckedOutDao.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\CheckedOutDaoImpl.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\UserDaoImpl.java
+C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\InventoryDaoImpl.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\entity\CheckedOut.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\controller\LoginServlet.java
 C:\Users\ajgoo\OneDrive\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\entity\Inventory.java

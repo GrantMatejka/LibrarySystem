@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Transaction {
    private Integer id;
-   private Integer bookId;
+   private String bookId;
    private Integer copyNum;    // What copy is this book? (ex: transaction 5 for book 3 copy 2)
    private Integer userId;
    private Date checkOutDate;
@@ -23,7 +23,7 @@ public class Transaction {
    }
 
    // Constructor w/o id
-   public Transaction(Integer bookId, Integer copyNum, Integer userId, Date checkOutDate, Date expectedCheckInDate, Boolean extend) {
+   public Transaction(String bookId, Integer copyNum, Integer userId, Date checkOutDate, Date expectedCheckInDate, Boolean extend) {
       this.id = null;
       this.bookId = bookId;
       this.copyNum = copyNum;
@@ -34,7 +34,7 @@ public class Transaction {
    }
 
    // Constructor w/ id
-   public Transaction(Integer id, Integer bookId, Integer copyNum, Integer userId, Date checkOutDate, Date expectedCheckInDate, Boolean extend) {
+   public Transaction(Integer id, String bookId, Integer copyNum, Integer userId, Date checkOutDate, Date expectedCheckInDate, Boolean extend) {
       this.id = id;
       this.bookId = bookId;
       this.copyNum = copyNum;
@@ -52,11 +52,11 @@ public class Transaction {
       this.id = id;
    }
 
-   public Integer getBookId() {
+   public String getBookId() {
       return this.bookId;
    }
 
-   public void setBookId(Integer bookId) {
+   public void setBookId(String bookId) {
       this.bookId = bookId;
    }
 
@@ -109,7 +109,7 @@ public class Transaction {
       return this;
    }
 
-   public Transaction bookId(Integer bookId) {
+   public Transaction bookId(String bookId) {
       this.bookId = bookId;
       return this;
    }
