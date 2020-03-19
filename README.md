@@ -16,4 +16,4 @@ DataSets also contains our CREATE table statements and our ER-Diagram.
 - [x] User Documentation on how to use your system (Found in GitHub wiki)
 
 # Presentation Link
-https://docs.google.com/presentation/d/1i57tprRCoPgO0LMpWPwuAPNfTDplsyd8PfdtVYbJwfI/edit?usp=sharing
+Presentation slides can be found in the DataSets folder
