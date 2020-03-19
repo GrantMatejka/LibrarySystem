@@ -35,7 +35,7 @@ public class LibrarianServlet extends HttpServlet {
         dm = DaoManagerFactory.createDaoManager();
         //TODO change what dao type this is to alter the view
         userDao = dm.getUserDao2();
-        bookDao = dm.getBookDao2();
+        bookDao = dm.getBookDao();
         InDao = dm.getInventoryDao();
         TransDao = dm.getTransactionDao();
 
@@ -52,29 +52,30 @@ public class LibrarianServlet extends HttpServlet {
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String check_in_user = request.getParameter("check_in_user");
-        request.setAttribute("check_in_user", check_in_user);
-        String check_in_book = request.getParameter("check_in_book");
-        request.setAttribute("check_in_book",check_in_book);
-        System.out.println(check_in_user + ' ' + check_in_book);
-        if(!userDao.authenticate(check_in_user)){
+        String check_out_user = request.getParameter("check_out_user");
+        request.setAttribute("check_out_user", check_out_user);
+        String check_out_book = request.getParameter("check_out_book");
+        request.setAttribute("check_out_book",check_out_book);
+        System.out.println(check_out_user + ' ' + check_out_book);
+        if(!userDao.authenticate(check_out_user)){
             System.out.println("not valid user");
         }
-        else if(bookDao.getById(check_in_book) == null){
+        else if(bookDao.getById(check_out_book) == null){
             System.out.println("not valid book");
         }
         else{
             Date myDate = new Date();
             java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
             Transaction t = new Transaction(
-                    check_in_book,
-                    InDao.getNextAvailabeBook(check_in_book),
-                    userDao.getIDByUsername(check_in_user),
+                    check_out_book,
+                    InDao.getNextAvailabeBook(check_out_book),
+                    userDao.getIDByUsername(check_out_user),
                     sqlDate,
                     null,
                     false);
 
-            TransDao.insert(t);
+            TransDao.insertCheckout(check_out_book, InDao.getNextAvailabeBook(check_out_book),
+                    userDao.getIDByUsername(check_out_user));
         }
         request.getRequestDispatcher("librarian.jsp").forward(request, response);
     }

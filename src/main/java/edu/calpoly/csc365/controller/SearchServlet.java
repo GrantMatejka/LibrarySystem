@@ -27,7 +27,7 @@ public class SearchServlet extends HttpServlet {
 
     public SearchServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
-        bookDao = dm.getBookDao2();
+        bookDao = dm.getBookDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

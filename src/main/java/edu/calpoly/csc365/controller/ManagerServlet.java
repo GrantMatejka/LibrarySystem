@@ -28,7 +28,7 @@ public class  ManagerServlet extends HttpServlet {
     public ManagerServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
         userDao = dm.getUserDao();
-        CheckedOutDao = dm.getCheckedOutDao();
+        CheckedOutDao = dm  .getCheckedOutDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

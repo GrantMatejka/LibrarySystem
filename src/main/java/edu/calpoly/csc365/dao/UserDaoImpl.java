@@ -85,9 +85,10 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = this.conn.prepareStatement("SELECT id FROM group09.Users WHERE username = ?");
             preparedStatement.setString(1,username);
             resultSet = preparedStatement.executeQuery();
-            id = resultSet.getInt("id");
+            while(resultSet.next()) {
+                id = resultSet.getInt("id");
 
-
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }

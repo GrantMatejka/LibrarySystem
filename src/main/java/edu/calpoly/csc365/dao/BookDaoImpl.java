@@ -33,7 +33,6 @@ public class BookDaoImpl implements BookDao {
         } finally {
             ResultSet rs = resultSet;
             try {
-                System.out.println(rs.getString("asin"));
                 if(!rs.first()) {
                     System.out.println("empty set");                }
                 else {
@@ -48,8 +47,7 @@ public class BookDaoImpl implements BookDao {
                                 rs.getString("title"),
                                 rs.getString("author"),
                                 rs.getInt("categoryId"),
-                                rs.getString("category"),
-                                rs.getInt("stockCnt"));
+                                rs.getString("category"));
 
                     }while(rs.next());
                 }

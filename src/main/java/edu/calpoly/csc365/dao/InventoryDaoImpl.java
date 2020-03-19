@@ -21,8 +21,10 @@ public class InventoryDaoImpl implements InventoryDao {
             preparedStatement = this.conn.prepareStatement("SELECT * FROM Inventory i WHERE i.bookId = ?");
             preparedStatement.setString(1,id);
             resultSet = preparedStatement.executeQuery();
-            total = resultSet.getInt("totalQuantity");
-            checked = resultSet.getInt("checkedOut");
+            while(resultSet.next()) {
+                total = resultSet.getInt("totalQuantity");
+                checked = resultSet.getInt("checkedOut");
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
