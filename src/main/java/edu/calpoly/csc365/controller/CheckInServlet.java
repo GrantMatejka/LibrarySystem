@@ -48,7 +48,7 @@ public class CheckInServlet extends HttpServlet {
         System.out.println("Checking outttt " + bookId + " " + copyNum + " " + userId);
         transactionDao.insertCheckIn(bookId, Integer.parseInt(copyNum), userId);
 
-        System.out.println("Checked out");
+        System.out.println("Checked In");
 
         request.getRequestDispatcher("checkIn.jsp").forward(request, response);
     }
