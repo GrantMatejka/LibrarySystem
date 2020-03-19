@@ -25,8 +25,12 @@
 
 <body>
 
+<div class="card-header">
+    ${message}
+</div>
+
 <div class="row">
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 
     <div class="col">
         <div class="card">
@@ -41,19 +45,33 @@
                  </form>
                  </div>
                  <table>
+                 <thead>Books</thead>
+                    <tr>
+                        <th>title</th>
+                        <th>author</th>
+                        <th>category</th>
+                        <th>stockCnt</th>
+                        <th>Checkout</th>
+                        <th>Reserve</th>
+                    </tr>
                  <c:forEach items="${books}" var="book">
                     <tr>
                         <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td>${book.category}</td>
+                        <td>${book.stockCnt}</td>
+                        <td><a href="./checkOut?bookId=${book.asin}&copyNum=${book.copyNum}&bookTitle=${book.title}&bookAuthor=${book.author}">Check Out</a></td>
+                        <td><a href="./reserve.jsp?bookId=${book.asin}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Reserve</a></td>
                     </tr>
                  </c:forEach>
                  </table>
-                 <p><a href="./student">back</a></p>
+                 <p><a href="./index.jsp">back</a></p>
                  </center>
             </div>
         </div>
     </div>
 
-    <div class="col-2"></div>
+    <div class="col-1"></div>
 </div>
 
 </body>

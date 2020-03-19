@@ -7,6 +7,7 @@ import edu.calpoly.csc365.dao.DaoManager;
 import edu.calpoly.csc365.entity.Book;
 import edu.calpoly.csc365.entity.User;
 import edu.calpoly.csc365.service.AuthenticationService;
+import edu.calpoly.csc365.dao.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,34 +20,40 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.Set;
 
-@WebServlet(name = "SearchServlet", urlPatterns = "/search")
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "CheckOutServlet", urlPatterns = "/checkOut")
+public class CheckOutServlet extends HttpServlet {
 
     private DaoManager dm;
-    private BookDao bookDao;
 
-    public SearchServlet() throws Exception {
+    private TransactionDao transactionDao = null;
+
+    public CheckOutServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
-        bookDao = dm.getBookDao2();
+        transactionDao = dm.getTransactionDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        Cookie[] cookies = request.getCookies();
+        System.out.println(cookies[0].getValue() + " " + cookies[1].getValue() + " " + cookies[2].getValue() + " " + cookies[3].getValue());
+
+        String bookId = request.getParameter("bookId");
+        String copyNum = request.getParameter("copyNum");
+        String userId = cookies[2].getValue();
+
+        System.out.println("Checking outttt " + bookId + " " + copyNum + " " + userId);
+        transactionDao.insertCheckout(bookId, Integer.parseInt(copyNum), Integer.parseInt(userId));
+
+        System.out.println("Checked out");
+
+        request.getRequestDispatcher("checkOut.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie[] cookies = request.getCookies();
 
-        request.setAttribute("message", "Hello " + cookies[2].getValue() + " ID: " + cookies[3].getValue());
 
-        String entry = request.getParameter("entry");
-        request.setAttribute("entry", entry);
-
-        Set<Book> books = bookDao.getSearchedBooks(entry);
-        request.setAttribute("books", books);
-        request.setAttribute("id" , cookies[2].getValue());
-
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        response.sendRedirect("search");
     }
+
+
 }
