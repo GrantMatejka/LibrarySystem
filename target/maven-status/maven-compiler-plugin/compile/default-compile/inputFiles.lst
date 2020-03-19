@@ -6,6 +6,7 @@ C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\UserDao
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\controller\LoginServlet.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\controller\SearchServlet.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\entity\Reservation.java
+C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\controller\CheckOutServlet.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\users\librarian.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\DaoManagerFactory.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\UserDaoImpl.java
@@ -19,6 +20,7 @@ C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\Transac
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\entity\Book.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\Dao.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\controller\LibrarianServlet.java
+C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\controller\ReservationServlet.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\DaoCommand.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\dao\DaoManager.java
 C:\Users\Matt\Desktop\LibrarySystem\src\main\java\edu\calpoly\csc365\entity\Inventory.java

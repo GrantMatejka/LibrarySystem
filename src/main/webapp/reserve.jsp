@@ -20,10 +20,9 @@
         <div class="card">
             <div class="card-header">
                 <h1>Checkout</h1>
-                Confirm checkout of <b><%=request.getParameter("bookTitle")%></b> by <b><%=request.getParameter("bookAuthor")%></b>
+                Confirm Reservation of <b><%=request.getParameter("bookTitle")%></b> by <b><%=request.getParameter("bookAuthor")%></b>
                 <form method="post" action="checkOut.jsp">
                     <input type="hidden" name="bookId" value = <%=request.getParameter("bookAsin")%> >
-                    <input type="hidden" name="copyNum" value = <%=request.getParameter("bookCopyNum")%> >
                     <input type="hidden" name="userId" value = <%=request.getParameter("id")%> >
                     <button class="btn btn-primary">Confirm</button>
                 </form>

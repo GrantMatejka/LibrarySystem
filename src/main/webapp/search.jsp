@@ -27,7 +27,7 @@
 
 <div class="card-header">
     ${message}
-    </div>
+</div>
 
 <div class="row">
     <div class="col-2"></div>
@@ -59,15 +59,15 @@
                         <td>${book.category}</td>
                         <td>${book.stockCnt}</td>
                         <c:if test="${book.stockCnt > 2}">
-                        <td><a href="./checkOut.jsp?bookAsin=${book.asin}&bookCopyNum=${book.copyNum}">Check Out</a></td>
+                        <td><a href="./checkOut.jsp?bookId=${book.asin}&copyNum=${book.copyNum}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Check Out</a></td>
                         </c:if>
                         <c:if test="${book.stockCnt == 2}">
-                        <td><a href="./Reserve.jsp?bookAsin=${book.asin}">Check Out</a></td>
+                        <td><a href="./reserve.jsp?bookId=${book.asin}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Reserve</a></td>
                         </c:if>
                     </tr>
                  </c:forEach>
                  </table>
-                 <p><a href="./student">back</a></p>
+                 <p><a href="./index.jsp">back</a></p>
                  </center>
             </div>
         </div>

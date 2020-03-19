@@ -7,6 +7,7 @@ import edu.calpoly.csc365.dao.DaoManager;
 import edu.calpoly.csc365.entity.Book;
 import edu.calpoly.csc365.entity.User;
 import edu.calpoly.csc365.service.AuthenticationService;
+import edu.calpoly.csc365.dao.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,35 +19,34 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.Set;
+import java.time.LocalDate;
 
-@WebServlet(name = "SearchServlet", urlPatterns = "/search")
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "ReservationServlet", urlPatterns = "/reserve")
+public class ReservationServlet extends HttpServlet {
 
     private DaoManager dm;
-    private BookDao bookDao;
 
-    public SearchServlet() throws Exception {
+    private TransactionDaoImpl transactionDaoImpl = null;
+
+    public ReservationServlet() throws Exception {
         dm = DaoManagerFactory.createDaoManager();
-        bookDao = dm.getBookDao();
+        transactionDaoImpl = dm.getTransactionDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        request.getRequestDispatcher("checkOut.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie[] cookies = request.getCookies();
 
-        request.setAttribute("message", "Hello " + cookies[2].getValue() + " ID: " + cookies[3].getValue());
+        String bookId = request.getParameter("bookId");
+        String userId = request.getParameter("userId");
 
-        String entry = request.getParameter("entry");
-        request.setAttribute("entry", entry);
+        transactionDaoImpl.insertReservation(bookId, Integer.parseInt(userId));
 
-        Set<Book> books = bookDao.getSearchedBooks(entry);
-        request.setAttribute("books", books);
-        request.setAttribute("id" , cookies[2].getValue());
-
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        request.getRequestDispatcher("reserve.jsp").forward(request, response);
     }
+
+
 }
