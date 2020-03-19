@@ -78,15 +78,40 @@ public class TransactionDaoImpl implements TransactionDao {
     public void insertReservation(String bookId, int userId) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        try {
+            this.dm = DaoManagerFactory.createDaoManager();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
 
         try {
-            preparedStatement = this.conn.prepareStatement("INSERT INTO Reservation (bookId, userId) VALUES (?, ?)");
-            preparedStatement.setString(1, bookId);
+            preparedStatement = this.conn.prepareStatement("INSERT INTO Reservations (dateReserved, userId, bookId) VALUES (?, ?, ?)");
+            preparedStatement.setDate(1, date);
             preparedStatement.setInt(2, userId);
-
-            resultSet = preparedStatement.executeQuery();
-            this.conn.commit();
-
+            preparedStatement.setString(3, bookId);
+            System.out.println(preparedStatement);
+            this.conn = dm.getTransConnection();
+            try{
+                this.conn.setAutoCommit(false);
+                Boolean returnValue = preparedStatement.execute();
+                this.conn.commit();
+            } catch(Exception e){
+                try {
+                    this.conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                try {
+                    this.conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            //boolean result = preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

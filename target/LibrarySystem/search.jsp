@@ -61,7 +61,7 @@
                         <td>${book.category}</td>
                         <td>${book.stockCnt}</td>
                         <td><a href="./checkOut?bookId=${book.asin}&copyNum=${book.copyNum}&bookTitle=${book.title}&bookAuthor=${book.author}">Check Out</a></td>
-                        <td><a href="./reserve.jsp?bookId=${book.asin}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Reserve</a></td>
+                        <td><a href="./reserve?bookId=${book.asin}&$userId=${id}&bookTitle=${book.title}&bookAuthor=${book.author}">Reserve</a></td>
                     </tr>
                  </c:forEach>
                  </table>
